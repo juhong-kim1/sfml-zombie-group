@@ -10,6 +10,13 @@ enum class SortingLayers
 	UI,
 };
 
+enum class Gametitle
+{
+	title,
+	mode,
+	exit,
+
+};
 
 enum class Origins
 {

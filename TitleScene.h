@@ -2,12 +2,7 @@
 #include "Scene.h"
 #include "Framework/TextGo.h"
 class TextGo;
-enum class Gametitle
-{
-	title,
-	mode,
-	
-};
+
 class TitleScene :
     public Scene
 {
@@ -16,6 +11,7 @@ protected:
 	sf::Sprite spritetitle;
 	sf::Sprite spriteMode;
 	TextGo* screenselect;
+	TextGo* clickStart;
 
 	
 	
