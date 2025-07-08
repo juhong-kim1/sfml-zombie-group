@@ -43,8 +43,6 @@ void Framework::Do()
             Variables::isDrawHitBox = !Variables::isDrawHitBox;
         }
 #endif
-
-
         SCENE_MGR.Update(deltaTime);
 
         // Draw
