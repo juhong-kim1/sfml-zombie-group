@@ -70,6 +70,7 @@ void Zombie::Reset()
 
 void Zombie::Update(float dt)
 {
+	// 테스트 코드 **
 	if (InputMgr::GetKeyDown(sf::Keyboard::Space))
 	{
 		OnDamage(10);
@@ -77,6 +78,7 @@ void Zombie::Update(float dt)
 
 	UpdateHpBar(); // 좀비 체력바 업데이트
 	Movement(dt);  // 좀비 이동
+	Attack(dt);    // 공격
 
 	if (health <= 0)
 	{
@@ -106,6 +108,19 @@ void Zombie::OnDamage(int damage)
 	}
 
 	health -= damage;
+}
+
+// 좀비 공격
+void Zombie::Attack(float dt)
+{
+	//attackTimer += dt;
+	//if (attackInterval < attackTimer && Utils::CheckCollision()) // 플레이어랑 병합 후 충돌체크하여 공격 **
+	//{
+	//	attackTimer = 0;
+	//	// 플레이어 데미지 메서드 호출
+	//	target->OnDamage(damage);
+	//	std::cout << "공격" << std::endl;
+	//}
 }
 
 // 좀비 타입 설정

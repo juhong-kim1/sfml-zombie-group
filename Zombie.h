@@ -30,6 +30,9 @@ protected:
 	float speed = 0.0f;
 	int damage = 0;
 
+	float attackInterval = 0.5f;
+	float attackTimer = 0.f;
+
 	sf::Vector2f targetPos = { 100.f, 100.f }; // 플레이어로 변경하기
 
 	// 생성될 때 랜덤 종류 적용
@@ -63,9 +66,10 @@ public:
 		return sprite.getGlobalBounds();
 	}
 
-
+	void Attack();
 	void SetRandomType();
 	void Movement(float dt);
 	void UpdateHpBar();
 	void Die();
+
 };
