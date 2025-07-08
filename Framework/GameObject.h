@@ -14,7 +14,6 @@ protected:
 	Origins originPreset = Origins::TL;
 
 public:
-
 	SortingLayers sortingLayer = SortingLayers::Default;
 	int sortingOrder = 0;
 

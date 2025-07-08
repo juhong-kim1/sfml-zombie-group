@@ -1,8 +1,6 @@
 #include "stdafx.h"
 #include "Zombie.h"
 
-std::list<Zombie*> zombieList;
-
 Zombie::Zombie(const std::string& name)
 	: GameObject(name)
 {
@@ -51,7 +49,7 @@ void Zombie::Release()
 
 void Zombie::Reset()
 {
-	SetType();
+	SetRandomType(); // 랜덤 타입 설정
 
 	SetOrigin(Origins::MC);
 	SetPosition({ 0.0f, 0.0f });
@@ -88,13 +86,14 @@ void Zombie::Update(float dt)
 
 void Zombie::Draw(sf::RenderWindow& window)
 {
+	window.draw(sprite);
+
 	// 최초 데미지를 입은 후 체력바가 나타나도록 함
 	if (health != maxHealth)
 	{
 		window.draw(hpBarBg);
 		window.draw(hpBar);
 	}
-	window.draw(sprite);
 }
 
 // 좀비 피격
@@ -110,7 +109,7 @@ void Zombie::OnDamage(int damage)
 }
 
 // 좀비 타입 설정
-void Zombie::SetType()
+void Zombie::SetRandomType()
 {
 	int random = Utils::RandomRange(0, (int)Type::count);
 
@@ -118,14 +117,14 @@ void Zombie::SetType()
 	{
 		texId = "graphics/bloater.png";
 		maxHealth = 200;
-		speed = 20.0f;
+		speed = 50.f;
 		damage = 50;
 	}
 	else if (random == (int)Type::chaser)
 	{
 		texId = "graphics/chaser.png";
 		maxHealth = 100;
-		speed = 50.0f;
+		speed = 150.f;
 		damage = 50;
 	}
 	else if (random == (int)Type::crawler)
@@ -165,5 +164,5 @@ void Zombie::UpdateHpBar()
 // 사망 처리
 void Zombie::Die()
 {
-	std::cout << "사망" << std::endl;
+	SetActive(false);
 }

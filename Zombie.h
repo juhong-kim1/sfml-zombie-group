@@ -12,8 +12,6 @@ enum class Type
 class Zombie : public GameObject
 {
 protected:
-	static std::list<Zombie*> zombiePool;
-
 	sf::Sprite sprite;
 	std::string texId = "graphics/bloater.png";
 
@@ -66,7 +64,7 @@ public:
 	}
 
 
-	void SetType();
+	void SetRandomType();
 	void Movement(float dt);
 	void UpdateHpBar();
 	void Die();
