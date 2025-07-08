@@ -1,6 +1,8 @@
 #include "stdafx.h"
 #include "SceneDev2.h"
 #include "Zombie.h"
+#include "Item.h"
+#include "ItemHealthPack.h"
 
 SceneDev2::SceneDev2() : Scene(SceneIds::Dev2)
 {
@@ -11,6 +13,7 @@ void SceneDev2::Init()
 	texIds.push_back("graphics/bloater.png");
 	texIds.push_back("graphics/chaser.png");
 	texIds.push_back("graphics/crawler.png");
+	texIds.push_back("graphics/health_pickup.png");
 
 	fontIds.push_back("fonts/DS-DIGIT.ttf");
 
@@ -21,6 +24,11 @@ void SceneDev2::Init()
 		zombie->SetActive(false);
 		zombiePool.push_back(zombie);
 	}
+
+
+	Item* healthPack = new ItemHealthPack();
+	//Item* 
+	AddGameObject(healthPack);
 
 	Scene::Init();
 }
