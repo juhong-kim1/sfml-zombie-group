@@ -72,7 +72,7 @@
   </ImportGroup>
   <PropertyGroup Label="UserMacros" />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
-    <OutDir>..\sfml-zombie-2-bin</OutDir>
+    <OutDir>.\sfml-zombie-2-bin</OutDir>
     <TargetName>$(ProjectName)-d</TargetName>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
@@ -145,7 +145,6 @@
     <ClCompile Include="Framework\InputMgr.cpp" />
     <ClCompile Include="Framework\SpriteGo.cpp" />
     <ClCompile Include="Framework\Scene.cpp" />
-    <ClCompile Include="Game1.cpp" />
     <ClCompile Include="main.cpp" />
     <ClCompile Include="Framework\SceneMgr.cpp" />
     <ClCompile Include="ModeScene.cpp" />
@@ -155,7 +154,6 @@
     </ClCompile>
     <ClCompile Include="Framework\TextGo.cpp" />
     <ClCompile Include="Framework\Utils.cpp" />
-    <ClCompile Include="TileMap.cpp" />
     <ClCompile Include="TitleScene.cpp" />
     <ClCompile Include="Variables.cpp" />
   </ItemGroup>
@@ -169,13 +167,10 @@
     <ClInclude Include="Framework\SpriteGo.h" />
     <ClInclude Include="Framework\Scene.h" />
     <ClInclude Include="Framework\SceneMgr.h" />
-    <ClInclude Include="Game1.h" />
     <ClInclude Include="ModeScene.h" />
-    <ClInclude Include="SceneDev2.h" />
     <ClInclude Include="stdafx.h" />
     <ClInclude Include="Framework\TextGo.h" />
     <ClInclude Include="Framework\Utils.h" />
-    <ClInclude Include="TileMap.h" />
     <ClInclude Include="TitleScene.h" />
     <ClInclude Include="Variables.h" />
   </ItemGroup>

@@ -57,6 +57,12 @@
     <ClCompile Include="SceneDev2.cpp">
       <Filter>소스 파일</Filter>
     </ClCompile>
+    <ClCompile Include="TileMap.cpp">
+      <Filter>소스 파일</Filter>
+    </ClCompile>
+    <ClCompile Include="Game1.cpp">
+      <Filter>소스 파일</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Framework\InputMgr.h">
@@ -102,6 +108,15 @@
       <Filter>헤더 파일</Filter>
     </ClInclude>
     <ClInclude Include="ModeScene.h">
+      <Filter>헤더 파일</Filter>
+    </ClInclude>
+    <ClInclude Include="TileMap.h">
+      <Filter>헤더 파일</Filter>
+    </ClInclude>
+    <ClInclude Include="SceneDev2.h">
+      <Filter>헤더 파일</Filter>
+    </ClInclude>
+    <ClInclude Include="Game1.h">
       <Filter>헤더 파일</Filter>
     </ClInclude>
   </ItemGroup>

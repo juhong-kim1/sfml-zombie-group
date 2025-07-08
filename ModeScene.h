@@ -35,7 +35,7 @@ public:
 	void Update(float dt) override;
 	void Draw(sf::RenderWindow& window);
 
-	void OnOptionClicked(size_t index);//클릭 함수
+	void OnOptionClicked(size_t index);//클릭 콜백 함수
 
 };
 

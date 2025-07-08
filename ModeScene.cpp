@@ -50,18 +50,20 @@ void ModeScene::Enter()
 	modeselect->SetPosition({ 120.0f, 350.f });
 
 	const sf::Font& font = FONT_MGR.Get("fonts/zombiecontrol.ttf");
-	//modeselect->GetText().setFont(font);
+
 	std::vector<std::string>messages =
 	{
 		"1. INCREASED RATE OF FIRE",
 		"2. INCREASED CLIF SIZECNEXT RELOAD",
 		"3. INCREASED MAX HEALTH",
 		"4. INCREASED RUN SPEED",
-		"5. MODE AND BATTER HEALTH PICKUPS",
-		"6. MODE AND BATTER AMMD PICKUPS",
+		"5. MORE AND BATTER HEALTH PICKUPS",
+		"6. MORE AND BATTER AMMD PICKUPS",
 	};
 	float yStart = 300.f;
 	float yStep = 70.f;
+
+	modeOptions.clear();
 
 	for (size_t i = 0; i < messages.size(); ++i)
 	{
@@ -100,6 +102,11 @@ void ModeScene::Update(float dt)
 			}
 		}
 	}
+	if (sf::Keyboard::isKeyPressed(sf::Keyboard::BackSpace))
+	{
+		SCENE_MGR.ChangeScene(SceneIds::Title);
+			return;
+	}
 	
 	/*for (auto obj : gameObjects)
 	{
@@ -112,4 +119,32 @@ void ModeScene::Update(float dt)
 void ModeScene::Draw(sf::RenderWindow& window)
 {
 	Scene::Draw(window);
+}
+
+void ModeScene::OnOptionClicked(size_t index)
+{
+	switch (index)
+	{
+	case 1:
+		std::cout << "발사속도 증가 모드 선택됨\n";
+		SCENE_MGR.ChangeScene(SceneIds::Game1);  // 예시: 게임씬으로 이동
+		break;
+	case 2:
+		std::cout << "탄창 크기 증가 모드 선택됨\n";
+		break;
+	case 3:
+		std::cout << "체력 증가 모드 선택됨\n";
+		break;
+	case 4:
+		std::cout << "달리기 속도 증가 모드 선택됨\n";
+		break;
+	case 5:
+		std::cout << "체력 아이템 증가 모드 선택됨\n";
+		break;
+	case 6:
+		std::cout << "탄약 아이템 증가 모드 선택됨\n";
+		break;
+	default:
+		break;
+	}
 }
