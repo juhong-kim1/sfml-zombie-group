@@ -78,7 +78,7 @@ void Zombie::Update(float dt)
 
 	UpdateHpBar(); // 좀비 체력바 업데이트
 	Movement(dt);  // 좀비 이동
-	Attack(dt);    // 공격
+	//Attack(dt);    // 공격
 
 	if (health <= 0)
 	{
@@ -111,8 +111,8 @@ void Zombie::OnDamage(int damage)
 }
 
 // 좀비 공격
-void Zombie::Attack(float dt)
-{
+//void Zombie::Attack(float dt)
+//{
 	//attackTimer += dt;
 	//if (attackInterval < attackTimer && Utils::CheckCollision()) // 플레이어랑 병합 후 충돌체크하여 공격 **
 	//{
@@ -121,7 +121,7 @@ void Zombie::Attack(float dt)
 	//	target->OnDamage(damage);
 	//	std::cout << "공격" << std::endl;
 	//}
-}
+//}
 
 // 좀비 타입 설정
 void Zombie::SetRandomType()
