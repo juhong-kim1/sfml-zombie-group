@@ -3,18 +3,10 @@
 #include "Framework/TextGo.h"
 #include "TitleScene.h"
 class TextGo;
-enum class GameMode
-{
-	title,
-	one,
-	two,
-	three,
-	four,
-	five,
-	six
-};
+
 class ModeScene :public Scene
 {protected:
+
 	TextGo* modeselect;
 	sf::Texture tex1;
 	sf::Texture tex2;
@@ -29,6 +21,10 @@ class ModeScene :public Scene
 	TextGo* Textgo_4;
 	TextGo* Textgo_5;
 	TextGo* Textgo_6;
+
+	Gametitle changeScene = Gametitle::title;
+
+
 public:
 	ModeScene() :Scene(SceneIds::Mode) {}
 	~ModeScene() override = default;
@@ -36,8 +32,8 @@ public:
 	void SetMode(const std::string& msg);
 	void Init() override;
 	void Enter() override;
-
 	void Update(float dt) override;
+	void Draw(sf::RenderWindow& window);
 
 };
 

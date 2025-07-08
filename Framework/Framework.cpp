@@ -7,7 +7,7 @@ void Framework::Init(int w, int h, const std::string& t)
     sf::VideoMode desktop = sf::VideoMode::getDesktopMode();
 
     // 전체화면으로 창 생성
-	window.create(sf::VideoMode(w, h), t);
+	//window.create(sf::VideoMode(w, h), t);
     window.create(desktop, t, sf::Style::Fullscreen);
     std::vector<std::string> texIds 
     = { "graphics/background.png", "graphics/player.png" };

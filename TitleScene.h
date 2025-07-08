@@ -13,10 +13,7 @@ protected:
 	TextGo* screenselect;
 	TextGo* clickStart;
 
-	
-	
-
-	Gametitle selectedMode = Gametitle::title;
+	Gametitle changeScene = Gametitle::mode;
 
 
 public:

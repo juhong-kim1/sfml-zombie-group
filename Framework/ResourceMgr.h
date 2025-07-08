@@ -94,6 +94,7 @@ public:
 			return Empty;
 		}
 		return *(it->second);
+
 	}
 	
 	bool Exists(const std::string& id) const
