@@ -21,6 +21,8 @@ public:
 	Player(const std::string& name = "");
 	virtual ~Player() = default;
 
+	bool CheckBorder(const sf::Vector2f pos);
+
 	void SetPosition(const sf::Vector2f& pos) override;
 	void SetRotation(float rot) override;
 	void SetScale(const sf::Vector2f& s) override;

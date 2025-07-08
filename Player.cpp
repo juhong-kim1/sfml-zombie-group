@@ -8,6 +8,17 @@ Player::Player(const std::string& name)
 {
 }
 
+bool Player::CheckBorder(const sf::Vector2f pos)
+{
+	sf::FloatRect localBounds = player.getLocalBounds();
+	sf::Transformable temp;
+	temp.setPosition(pos);
+	hitBox.UpdateTransform(temp, localBounds);
+
+	sf::FloatRect wallet(300, 300, 100, 100);
+	return hitBox.rect.getGlobalBounds().intersects(wallet);
+}
+
 void Player::SetPosition(const sf::Vector2f& pos)
 {
 	GameObject::SetPosition(pos);
@@ -77,7 +88,13 @@ void Player::Update(float dt)
 		Utils::Normalize(direction);
 	}
 
-	SetPosition(position + direction * speed * dt);
+	sf::Vector2f nextPos = position + direction * speed * dt;
+
+	if (!CheckBorder(nextPos))
+	{
+		SetPosition(nextPos);
+	}
+
 
 	sf::Vector2i mousePos = InputMgr::GetMousePosition();
 	sf::Vector2f mouseWorldPos = sceneGame->ScreenToWorld(mousePos);

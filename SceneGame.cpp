@@ -35,9 +35,20 @@ void SceneGame::Exit()
 void SceneGame::Update(float dt)
 {
 	Scene::Update(dt);
+
+	if (player != nullptr)
+	{
+		worldView.setCenter(player->GetPosition());
+	}
 }
 
 void SceneGame::Draw(sf::RenderWindow& window)
 {
+	sf::RectangleShape wall(sf::Vector2f(100.f, 100.f));
+	wall.setPosition(300.f, 300.f);
+	wall.setFillColor(sf::Color::Red);
+	window.draw(wall);
+
+	window.setView(worldView);
 	Scene::Draw(window);
 }
