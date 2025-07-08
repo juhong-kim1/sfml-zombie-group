@@ -30,7 +30,7 @@ protected:
 	float speed = 0.0f;
 	int damage = 0;
 
-	sf::Vector2f targetPos = { 500.f, 500.f }; // 플레이어로 변경하기
+	sf::Vector2f targetPos = { 100.f, 100.f }; // 플레이어로 변경하기
 
 	// 생성될 때 랜덤 종류 적용
 

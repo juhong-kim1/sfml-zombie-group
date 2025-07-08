@@ -144,7 +144,10 @@ void Zombie::SetRandomType()
 void Zombie::Movement(float dt)
 {
 	// 이동
-	SetPosition(position + direction * speed * dt);
+	if (Utils::Distance(targetPos, position) > 0.5f)
+	{
+		SetPosition(position + direction * speed * dt);
+	}
 	
 	// 이동하고자 하는 방향을 바라보게 회전
 	direction = Utils::GetNormal(targetPos - position);
