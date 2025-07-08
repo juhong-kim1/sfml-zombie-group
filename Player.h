@@ -1,17 +1,19 @@
 #pragma once
 #include "GameObject.h"
+
+class SceneGame;
+
 class Player : public GameObject
 {
 protected:
 	sf::Sprite player;
 	std::string texId = "graphics/player.png";
 
+	sf::Vector2f look;
 	sf::Vector2f direction;
-	float speed = 0;
+	float speed = 500.f;
 
-
-
-
+	SceneGame* sceneGame = nullptr;
 public:
 	Player(const std::string& name = "");
 	virtual ~Player() = default;

@@ -1,5 +1,6 @@
 #include "stdafx.h"
 #include "Player.h"
+#include "SceneGame.h"
 
 Player::Player(const std::string& name)
 	: GameObject(name)
@@ -52,18 +53,32 @@ void Player::Release()
 void Player::Reset()
 {
 	player.setTexture(TEXTURE_MGR.Get(texId), true);
-	SetOrigin(Origins::TL);
+	SetOrigin(Origins::MC);
 	SetPosition({ 0.f,0.f });
 	SetRotation(0.f);
 
+	direction = { 0.f, 0.f };
+	look = { 1.f, 0.f };
 
 }
 
 void Player::Update(float dt)
 {
-	SetOrigin(Origins::TL);
-	SetPosition({ 0.f,0.f });
-	SetRotation(0.f);
+	direction.x = InputMgr::GetAxis(Axis::Horizontal);
+	direction.y = InputMgr::GetAxis(Axis::Vertical);
+
+	if (Utils::Magnitude(direction) > 1.f)
+	{
+		Utils::Normalize(direction);
+	}
+
+	SetPosition(position + direction * speed * dt);
+
+	sf::Vector2i mousePos = InputMgr::GetMousePosition();
+	sf::Vector2f mouseWorldPos = sceneGame->ScreenToWorld(mousePos);
+	look = Utils::GetNormal(mouseWorldPos - GetPosition());
+	SetRotation(Utils::Angle(look));
+
 }
 
 void Player::Draw(sf::RenderWindow& window)
