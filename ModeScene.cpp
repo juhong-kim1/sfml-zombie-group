@@ -71,8 +71,9 @@ void ModeScene::Enter()
 		textObj->SetFillColor(sf::Color::White);
 		textObj->SetPosition({ 120.f, yStart + i * yStep });
 		textObj->GetText().setFont(font);
+		
+		modeOptions.push_back(textObj);
 	}
-	
 	
 	
 }
@@ -81,13 +82,32 @@ void ModeScene::Enter()
 
 void ModeScene::Update(float dt)
 {
-	for (auto obj : gameObjects)
+	Scene::Update(dt);
+
+	if (InputMgr::GetMouseButtonDown(sf::Mouse::Left))
+	{
+		sf::Vector2i mousePixelPos = sf::Mouse::getPosition(FRAMEWORK.GetWindow());
+		sf::Vector2f mouseWorldPos = FRAMEWORK.GetWindow().mapPixelToCoords(mousePixelPos);
+
+		for (size_t i = 0; i < modeOptions.size(); ++i)
+		{
+			const sf::FloatRect bounds = modeOptions[i]->GetText().getGlobalBounds();
+
+			if (bounds.contains(mouseWorldPos))
+			{
+				OnOptionClicked(i);  // 클릭된 인덱스 전달
+				break;
+			}
+		}
+	}
+	
+	/*for (auto obj : gameObjects)
 	{
 		if (obj->GetActive())
 		{
 			obj->Update(dt);
 		}
-	}
+	}*/
 }
 void ModeScene::Draw(sf::RenderWindow& window)
 {

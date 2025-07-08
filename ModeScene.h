@@ -6,7 +6,7 @@ class TextGo;
 
 class ModeScene :public Scene
 {protected:
-
+	std::vector<TextGo*> modeOptions;
 	TextGo* modeselect;
 	sf::Texture tex1;
 	sf::Texture tex2;
@@ -34,6 +34,8 @@ public:
 	void Enter() override;
 	void Update(float dt) override;
 	void Draw(sf::RenderWindow& window);
+
+	void OnOptionClicked(size_t index);//클릭 함수
 
 };
 
