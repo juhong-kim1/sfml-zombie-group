@@ -140,11 +140,13 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="Bullet.cpp" />
     <ClCompile Include="Framework\Framework.cpp" />
     <ClCompile Include="Framework\GameObject.cpp" />
     <ClCompile Include="Framework\InputMgr.cpp" />
     <ClCompile Include="Framework\SpriteGo.cpp" />
     <ClCompile Include="Framework\Scene.cpp" />
+    <ClCompile Include="HitBox.cpp" />
     <ClCompile Include="main.cpp" />
     <ClCompile Include="Player.cpp" />
     <ClCompile Include="SceneDev1.cpp" />
@@ -159,6 +161,7 @@
     <ClCompile Include="Variables.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="Bullet.h" />
     <ClInclude Include="Framework\Framework.h" />
     <ClInclude Include="Framework\Defines.h" />
     <ClInclude Include="Framework\GameObject.h" />
@@ -167,6 +170,7 @@
     <ClInclude Include="Framework\Singleton.h" />
     <ClInclude Include="Framework\SpriteGo.h" />
     <ClInclude Include="Framework\Scene.h" />
+    <ClInclude Include="HitBox.h" />
     <ClInclude Include="Player.h" />
     <ClInclude Include="SceneDev1.h" />
     <ClInclude Include="SceneDev2.h" />

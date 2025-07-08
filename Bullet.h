@@ -3,23 +3,25 @@
 #include "HitBox.h"
 
 class SceneGame;
-class HitBox;
 
-class Player : public GameObject
+class Bullet :
+	public GameObject
 {
 protected:
-	sf::Sprite player;
-	std::string texId = "graphics/player.png";
+	sf::Sprite body;
+	std::string texId = "graphics/bullet.png";
 
-	sf::Vector2f look;
 	sf::Vector2f direction;
-	float speed = 500.f;
+	float speed = 0.f;
+	int damage = 0;
+
+	HitBox hitBox;
 
 	SceneGame* sceneGame = nullptr;
-	HitBox hitBox;
+
 public:
-	Player(const std::string& name = "");
-	virtual ~Player() = default;
+	Bullet(const std::string& name = "");
+	virtual ~Bullet() = default;
 
 	void SetPosition(const sf::Vector2f& pos) override;
 	void SetRotation(float rot) override;
@@ -33,7 +35,16 @@ public:
 	void Update(float dt) override;
 	void Draw(sf::RenderWindow& window) override;
 
+	sf::FloatRect GetLocalBounds() const override
+	{
+		return body.getLocalBounds();
+	}
 
+	sf::FloatRect GetGlobalBounds() const override
+	{
+		return body.getGlobalBounds();
+	}
+
+	void Fire(const sf::Vector2f& pos, const sf::Vector2f& dir, float s, int d);
 
 };
-
