@@ -3,6 +3,7 @@
 #include "Zombie.h"
 #include "Item.h"
 #include "ItemHealthPack.h"
+#include "ItemAmmo.h"
 
 SceneDev2::SceneDev2() : Scene(SceneIds::Dev2)
 {
@@ -14,6 +15,7 @@ void SceneDev2::Init()
 	texIds.push_back("graphics/chaser.png");
 	texIds.push_back("graphics/crawler.png");
 	texIds.push_back("graphics/health_pickup.png");
+	texIds.push_back("graphics/ammo_pickup.png");
 
 	fontIds.push_back("fonts/DS-DIGIT.ttf");
 
@@ -24,11 +26,6 @@ void SceneDev2::Init()
 		zombie->SetActive(false);
 		zombiePool.push_back(zombie);
 	}
-
-
-	Item* healthPack = new ItemHealthPack();
-	//Item* 
-	AddGameObject(healthPack);
 
 	Scene::Init();
 }
@@ -79,9 +76,9 @@ void SceneDev2::Update(float dt)
 	if (InputMgr::GetKeyDown(sf::Keyboard::Space))
 	{
 		SpawnZombies(10);
+		SpawnItems(3);
 	}
 }
-
 
 void SceneDev2::Draw(sf::RenderWindow& window)
 {
@@ -112,5 +109,34 @@ void SceneDev2::SpawnZombies(int count)
 		zombie->Reset();
 		zombie->SetPosition(Utils::RandomInUnitCircle() * 500.f);
 		zombieList.push_back(zombie);
+	}
+}
+
+void SceneDev2::SpawnItems(int counts)
+{
+	for (int i = 0; i < counts; i++)
+	{
+		Item* item = nullptr;
+
+		// 아이템 종류 랜덤 설정
+		int random = Utils::RandomRange(0, (int)Item::ItemType::count);
+
+		if (random == (int)Item::ItemType::HealthPack)
+		{
+			item = new ItemHealthPack();
+		}
+		else if (random == (int)Item::ItemType::Ammo)
+		{
+			item = new ItemAmmo();
+		}
+
+		if (item != nullptr)
+		{
+			AddGameObject(item);
+			item->Init();
+			item->Reset();
+			item->SetPosition(Utils::RandomInUnitCircle() * 300.f);
+			itemList.push_back(item);
+		}
 	}
 }

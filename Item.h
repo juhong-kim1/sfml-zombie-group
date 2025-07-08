@@ -3,6 +3,14 @@
 
 class Item : public GameObject
 {
+public:
+	enum ItemType
+	{
+		HealthPack,
+		Ammo,
+		count
+	};
+
 protected:
 	std::string name;
 	std::string texId;

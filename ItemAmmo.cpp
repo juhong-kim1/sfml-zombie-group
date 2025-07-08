@@ -7,6 +7,39 @@ ItemAmmo::ItemAmmo(const std::string& name)
 {
 }
 
+void ItemAmmo::SetPosition(const sf::Vector2f& pos)
+{
+	GameObject::SetPosition(pos);
+	ammoSprite.setPosition(pos);
+}
+
+void ItemAmmo::SetRotation(float rot)
+{
+	GameObject::SetRotation(rot);
+	ammoSprite.setRotation(rot);
+}
+
+void ItemAmmo::SetScale(const sf::Vector2f& s)
+{
+	GameObject::SetScale(s);
+	ammoSprite.setScale(s);
+}
+
+void ItemAmmo::SetOrigin(const sf::Vector2f& o)
+{
+	GameObject::SetOrigin(o);
+	ammoSprite.setOrigin(o);
+}
+
+void ItemAmmo::SetOrigin(Origins preset)
+{
+	GameObject::SetOrigin(preset);
+	if (preset != Origins::Custom)
+	{
+		Utils::SetOrigin(ammoSprite, preset);
+	}
+}
+
 void ItemAmmo::Init()
 {
 	sortingLayer = SortingLayers::Foreground;

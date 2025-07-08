@@ -147,6 +147,7 @@
     <ClCompile Include="Framework\Scene.cpp" />
     <ClCompile Include="HitBox.cpp" />
     <ClCompile Include="Item.cpp" />
+    <ClCompile Include="ItemAmmo.cpp" />
     <ClCompile Include="ItemHealthPack.cpp" />
     <ClCompile Include="main.cpp" />
     <ClCompile Include="SceneDev1.cpp" />
@@ -171,6 +172,7 @@
     <ClInclude Include="Framework\Scene.h" />
     <ClInclude Include="HitBox.h" />
     <ClInclude Include="Item.h" />
+    <ClInclude Include="ItemAmmo.h" />
     <ClInclude Include="ItemHealthPack.h" />
     <ClInclude Include="SceneDev1.h" />
     <ClInclude Include="SceneDev2.h" />

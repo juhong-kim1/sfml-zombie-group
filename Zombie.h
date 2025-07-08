@@ -71,5 +71,4 @@ public:
 	void Movement(float dt);
 	void UpdateHpBar();
 	void Die();
-
 };
