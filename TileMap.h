@@ -7,6 +7,7 @@ protected:
     std::string spriteSheetId = "graphics/background_sheet.png";
 	sf::Texture* texture = nullptr;
 	sf::Transform transform;
+	std::vector<int> tileTypes;
 
 	sf::Vector2i cellCount;
 	sf::Vector2f cellSize;
@@ -24,6 +25,7 @@ public:
 	void SetOrigin(const sf::Vector2f& o) override;
 	void SetOrigin(Origins preset) override;
 
+	bool IsWallAt(const sf::Vector2f& worldPos);
 	void Init() override;
 	void Release() override;
 	void Reset() override;

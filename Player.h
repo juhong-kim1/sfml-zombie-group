@@ -32,6 +32,11 @@ protected:
 	float maxHealth = 0.0f;
 	float health = 0.0f;
 
+	int ammoInClip = 0;   // ���� źâ�� �ִ� ź�� ��
+	int maxClipSize = 6;  // źâ�� �ִ� �뷮
+	int reserveAmmo = 24;  // �������� �� �ִ� ���� ź��
+	int reloadAmount = 0; // ������ ��
+
 public:
 	Player(const std::string& name = "");
 	virtual ~Player() = default;
@@ -49,9 +54,10 @@ public:
 	void Reset() override;
 	void Update(float dt) override;
 	void Draw(sf::RenderWindow& window) override;
-	
 
 	void SetStats();
+
+	void Reload();
 
 	const HitBox& GetHitBox() const
 	{

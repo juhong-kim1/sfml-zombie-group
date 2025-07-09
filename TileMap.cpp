@@ -16,6 +16,9 @@ void TileMap::Set(const sf::Vector2i& count, const sf::Vector2f& size)
 	va.setPrimitiveType(sf::Quads);
 	va.resize(count.x * count.y * 4);
 
+	tileTypes.clear();
+	tileTypes.resize(count.x * count.y);
+
 	sf::Vector2f posOffset[4] =
 	{
 		{ 0.f, 0.f },
@@ -34,6 +37,7 @@ void TileMap::Set(const sf::Vector2i& count, const sf::Vector2f& size)
 
 	for (int i = 0; i < count.y; ++i)
 	{
+
 		for (int j = 0; j < count.x; ++j)
 		{
 			int texIndex = Utils::RandomRange(0, 3);
@@ -43,6 +47,8 @@ void TileMap::Set(const sf::Vector2i& count, const sf::Vector2f& size)
 			}
 
 			int quadIndex = i * count.x + j;
+
+			tileTypes[quadIndex] = texIndex;
 			sf::Vector2f quadPos(j * size.x, i * size.y);
 
 			for (int k = 0; k < 4; ++k)
@@ -52,6 +58,7 @@ void TileMap::Set(const sf::Vector2i& count, const sf::Vector2f& size)
 				va[vertexIndex].texCoords = texCoords[k];
 				va[vertexIndex].texCoords.y += texIndex * 50.f;
 			}
+
 		}
 	}
 }
@@ -102,6 +109,27 @@ void TileMap::SetOrigin(Origins preset)
 		origin.y = rect.height * ((int)preset / 3) * 0.5f;
 	}
 	UpdateTransform();
+}
+
+bool TileMap::IsWallAt(const sf::Vector2f& worldPos)
+{
+
+	sf::Vector2f localPos = transform.getInverse().transformPoint(worldPos);
+
+	int x = static_cast<int>(localPos.x / cellSize.x);
+	int y = static_cast<int>(localPos.y / cellSize.y);
+
+
+
+	if (x < 0 || y < 0 || x >= cellCount.x || y >= cellCount.y)
+	{
+		return true;
+	}
+
+	int index = y * cellCount.x + x;
+
+
+	return tileTypes[index] == 3;
 }
 
 void TileMap::Init()

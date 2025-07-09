@@ -75,7 +75,6 @@ void Bullet::Fire(const sf::Vector2f& pos, const sf::Vector2f& dir, float s, int
 	damage = d;
 
 	SetRotation(Utils::Angle(direction));
-
 }
 
 void Bullet::Update(float dt)
@@ -84,13 +83,13 @@ void Bullet::Update(float dt)
 	hitBox.UpdateTransform(body, GetLocalBounds());
 
 	const auto& list = sceneDev2->GetZombies();
+
 	for (const auto zombie : list)
 	{
 		if (Utils::CheckCollision(hitBox.rect, zombie->GetHitBox().rect))
 		{
 			SetActive(false);
-			zombie->SetActive(false);
-			//zombie->OnDamage(damage);
+			zombie->OnDamage(50);
 			break;
 		}
 	}

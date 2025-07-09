@@ -102,7 +102,9 @@
     <ClCompile Include="Framework\InputMgr.cpp" />
     <ClCompile Include="Framework\SpriteGo.cpp" />
     <ClCompile Include="Framework\Scene.cpp" />
-    <ClCompile Include="effect.cpp" />
+    <ClCompile Include="effect.cpp">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">false</ExcludedFromBuild>
+    </ClCompile>
     <ClCompile Include="HitBox.cpp" />
     <ClCompile Include="Item.cpp" />
     <ClCompile Include="ItemAmmo.cpp" />
@@ -140,7 +142,9 @@
     <ClInclude Include="Framework\Singleton.h" />
     <ClInclude Include="Framework\SpriteGo.h" />
     <ClInclude Include="Framework\Scene.h" />
-    <ClInclude Include="effect.h" />
+    <ClInclude Include="effect.h">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">false</ExcludedFromBuild>
+    </ClInclude>
     <ClInclude Include="HitBox.h" />
     <ClInclude Include="Item.h" />
     <ClInclude Include="ItemAmmo.h" />

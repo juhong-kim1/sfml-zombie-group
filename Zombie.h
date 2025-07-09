@@ -17,6 +17,7 @@ class Zombie : public GameObject
 protected:
 	sf::Sprite sprite;
 	std::string texId = "graphics/bloater.png";
+	std::string bloodTexId = "graphics/blood.png";
 
 	Player* target = nullptr;
 
@@ -27,6 +28,7 @@ protected:
 	sf::Vector2f hpBarOffset = { 0.f, 5.f };
 
 	bool isActive = false;
+	bool isAlive = true;
 
 	float per = 0.f; // 변수 명 변경하기..
 
@@ -37,6 +39,7 @@ protected:
 
 	float attackInterval = 0.5f;
 	float attackTimer = 0.f;
+	float fadeTimer = 0.f;
 
 	sf::Vector2f targetPos = { 100.f, 100.f }; // 플레이어로 변경하기
 	
