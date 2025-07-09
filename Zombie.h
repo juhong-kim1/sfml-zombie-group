@@ -41,6 +41,8 @@ protected:
 	float attackTimer = 0.f;
 	float fadeTimer = 0.f;
 
+	bool hitBoxActive = true;
+
 	sf::Vector2f targetPos = { 100.f, 100.f }; // 플레이어로 변경하기
 	
 	HitBox hitBox;
@@ -83,6 +85,15 @@ public:
 
 	const HitBox& GetHitBox() const
 	{
-		return hitBox;
+		if (hitBoxActive)
+		{
+			return hitBox;
+		}
+		else
+		{
+			static HitBox nullHitBox;
+			nullHitBox.rect.setSize({ 0.f, 0.f });
+			return nullHitBox;
+		}
 	}
 };

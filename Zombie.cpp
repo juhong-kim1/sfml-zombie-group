@@ -53,6 +53,7 @@ void Zombie::Reset()
 	target = (Player*)SCENE_MGR.GetCurrentScene()->FindGameObject("Player");
 
 	SetRandomType(); // 랜덤 타입 설정
+	hitBoxActive = true;
 
 	sortingLayer = SortingLayers::Foreground;
 	sortingOrder = 0;
@@ -204,4 +205,5 @@ void Zombie::Die()
 	// 피가 될 경우 레이어 변경
 	sortingLayer = SortingLayers::Background;
 	sortingOrder = 1;
+	hitBoxActive = false;
 }
