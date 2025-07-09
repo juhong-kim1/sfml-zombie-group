@@ -75,7 +75,6 @@ void Bullet::Fire(const sf::Vector2f& pos, const sf::Vector2f& dir, float s, int
 	damage = d;
 
 	SetRotation(Utils::Angle(direction));
-
 }
 
 void Bullet::Update(float dt)

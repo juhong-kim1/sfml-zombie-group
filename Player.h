@@ -32,6 +32,11 @@ protected:
 	float maxHealth = 0.0f;
 	float health = 0.0f;
 
+	int ammoInClip = 0;   // 현재 탄창에 있는 탄약 수
+	int maxClipSize = 6;  // 탄창의 최대 용량
+	int reserveAmmo = 24;  // 재장전할 수 있는 예비 탄약
+	int reloadAmount = 0; // 재장전 양
+
 public:
 	Player(const std::string& name = "");
 	virtual ~Player() = default;
@@ -49,15 +54,10 @@ public:
 	void Reset() override;
 	void Update(float dt) override;
 	void Draw(sf::RenderWindow& window) override;
-	
-	void Effect1();
-	void Effect2();
-	void Effect3();
-	void Effect4();
-	void Effect5();
-	void Effect6();
 
 	void SetStats();
+
+	void Reload();
 
 	const HitBox& GetHitBox() const
 	{

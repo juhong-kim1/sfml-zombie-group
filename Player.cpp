@@ -69,6 +69,8 @@ void Player::Reset()
 	sceneDev2 = (SceneDev2*)SCENE_MGR.GetCurrentScene();
 
 	SetStats(); // ���� ����
+	ammoInClip = maxClipSize;
+
 	health = maxHealth;
 
 	for (Bullet* bullet : bulletList)
@@ -136,6 +138,11 @@ void Player::Update(float dt)
 		shootTimer = 0.f;
 		Shoot();
 	}
+
+	if (InputMgr::GetKeyDown(sf::Keyboard::R))
+	{
+		Reload();
+	}
 }
 
 void Player::Draw(sf::RenderWindow& window)
@@ -146,24 +153,29 @@ void Player::Draw(sf::RenderWindow& window)
 
 void Player::Shoot()
 {
-	Bullet* bullet = nullptr;
-	if (bulletPool.empty())
+	if (ammoInClip > 0)
 	{
-		bullet = new Bullet();
-		bullet->Init();
-	}
-	else
-	{ 
-		bullet = bulletPool.front();
-		bulletPool.pop_front();
-		bullet->SetActive(true);
-	}
+		Bullet* bullet = nullptr;
+		if (bulletPool.empty())
+		{
+			bullet = new Bullet();
+			bullet->Init();
+		}
+		else
+		{
+			bullet = bulletPool.front();
+			bulletPool.pop_front();
+			bullet->SetActive(true);
+		}
 
-	bullet->Reset();
-	bullet->Fire(position + look * 10.f, look, 1000.f, 10);
+		bullet->Reset();
+		bullet->Fire(position + look * 10.f, look, 1000.f, 10);
+		ammoInClip -= 1;
+		std::cout << ammoInClip << " / " << reserveAmmo << std::endl;
 
-	bulletList.push_back(bullet);
-	sceneDev2->AddGameObject(bullet);
+		bulletList.push_back(bullet);
+		sceneDev2->AddGameObject(bullet);
+	}
 }
 
 
@@ -178,16 +190,29 @@ void Player::OnDamage(int damage)
 	if (hp == 0)
 	{
 		SCENE_MGR.ChangeScene(SceneIds::Mode);
-
 	}
 }
 
-
-void Player::Effect1()
 void Player::SetStats()
 {
 	shootInterval = DataStruct::GetRateOfFire();
-	//clip = DataStruct::GetClipSize();
+	reloadAmount = DataStruct::GetClipSize();
 	maxHealth = DataStruct::GetMaxHealth();
 	speed = DataStruct::GetRunSpeed();
+}
+
+void Player::Reload()
+{
+	if (ammoInClip + reloadAmount > maxClipSize)
+	{
+		reserveAmmo = reserveAmmo - (reloadAmount - ammoInClip);
+		ammoInClip = maxClipSize;
+	}
+	else
+	{
+		ammoInClip = reloadAmount;
+		reserveAmmo -= reloadAmount;
+	}
+
+	std::cout << "reload : " << ammoInClip << " / " << reserveAmmo << std::endl;
 }
