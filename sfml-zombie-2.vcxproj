@@ -112,6 +112,13 @@
     <ClCompile Include="SceneGame.cpp" />
     <ClCompile Include="Game1.cpp" />
     <ClCompile Include="ModeScene.cpp" />
+    <ClCompile Include="SceneGame1.cpp" />
+    <ClCompile Include="SceneGame2.cpp" />
+    <ClCompile Include="SceneGame3.cpp" />
+    <ClCompile Include="SceneGame4.cpp" />
+    <ClCompile Include="SceneGame5.cpp" />
+    <ClCompile Include="SceneGame6.cpp" />
+    <ClCompile Include="SceneSelect.cpp" />
     <ClCompile Include="stdafx.cpp">
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">Create</PrecompiledHeader>
     </ClCompile>
@@ -136,9 +143,17 @@
     <ClInclude Include="Item.h" />
     <ClInclude Include="ItemAmmo.h" />
     <ClInclude Include="ItemHealthPack.h" />
+    <ClInclude Include="Player.h" />
     <ClInclude Include="SceneDev2.h" />
     <ClInclude Include="Framework\SceneMgr.h" />
     <ClInclude Include="SceneGame.h" />
+    <ClInclude Include="SceneGame1.h" />
+    <ClInclude Include="SceneGame2.h" />
+    <ClInclude Include="SceneGame3.h" />
+    <ClInclude Include="SceneGame4.h" />
+    <ClInclude Include="SceneGame5.h" />
+    <ClInclude Include="SceneGame6.h" />
+    <ClInclude Include="SceneSelect.h" />
     <ClInclude Include="stdafx.h" />
     <ClInclude Include="Framework\TextGo.h" />
     <ClInclude Include="Framework\Utils.h" />
@@ -148,6 +163,9 @@
     <ClInclude Include="ModeScene.h" />
     <ClInclude Include="TileMap.h" />
     <ClInclude Include="TitleScene.h" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include=".gitignore" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets" />

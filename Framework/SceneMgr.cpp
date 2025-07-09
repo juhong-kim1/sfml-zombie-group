@@ -3,11 +3,25 @@
 #include "SceneDev2.h"
 #include "TitleScene.h"
 #include"ModeScene.h"
+#include"SceneGame1.h"
+#include"SceneGame2.h"
+#include"SceneGame3.h"
+#include"SceneGame4.h"
+#include"SceneGame5.h"
+#include"SceneGame6.h"
+#include"SceneSelect.h"
 
 void SceneMgr::Init()
 {
 	scenes.push_back(new TitleScene());
 	scenes.push_back(new ModeScene());
+	scenes.push_back(new SceneGame1());
+	scenes.push_back(new SceneGame2());
+	scenes.push_back(new SceneGame3());
+	scenes.push_back(new SceneGame4());
+	scenes.push_back(new SceneGame5());
+	scenes.push_back(new SceneGame6());
+	scenes.push_back(new SceneSelect());
 
 	for (auto scene : scenes)
 	{
