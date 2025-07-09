@@ -147,6 +147,7 @@ void Player::Update(float dt)
 	{
 		Reload();
 	}
+
 }
 
 void Player::Draw(sf::RenderWindow& window)

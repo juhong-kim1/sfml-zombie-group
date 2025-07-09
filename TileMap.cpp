@@ -118,17 +118,15 @@ bool TileMap::IsWallAt(const sf::Vector2f& worldPos)
 
 	int x = static_cast<int>(localPos.x / cellSize.x);
 	int y = static_cast<int>(localPos.y / cellSize.y);
-	std::cout << "체크 좌표 (" << x << ", " << y << ")" << std::endl;
+
 
 
 	if (x < 0 || y < 0 || x >= cellCount.x || y >= cellCount.y)
 	{
-		std::cout << "▶ 범위 밖 = 벽" << std::endl;
 		return true;
 	}
 
 	int index = y * cellCount.x + x;
-	std::cout << "▶ index: " << index << " → 타입: " << tileTypes[index] << std::endl;
 
 
 	return tileTypes[index] == 3;
