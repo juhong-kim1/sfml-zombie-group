@@ -266,6 +266,7 @@ void Player::OnDamage(int damage)
 
 	if (hp == 0)
 	{
+		DataStruct::DataReset();
 		SCENE_MGR.ChangeScene(SceneIds::Mode);
 	}
 }
@@ -285,15 +286,20 @@ void Player::SetStats()
 
 void Player::Reload()
 {
-	if (ammoInClip + reloadAmount > maxClipSize)
+	if (maxClipSize - ammoInClip <= 0 || reserveAmmo <= 0)
 	{
-		reserveAmmo = reserveAmmo - (reloadAmount - ammoInClip);
+		return;
+	}
+
+	if (reserveAmmo >= maxClipSize - ammoInClip)
+	{
+		reserveAmmo -= (maxClipSize - ammoInClip);
 		ammoInClip = maxClipSize;
 	}
 	else
 	{
-		ammoInClip = reloadAmount;
-		reserveAmmo -= reloadAmount;
+		ammoInClip += reserveAmmo;
+		reserveAmmo = 0;
 	}
 
 	SoundMgr::Instance().Play("reload");

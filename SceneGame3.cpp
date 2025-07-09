@@ -79,7 +79,7 @@ void SceneGame3::Update(float dt)
 	auto it = zombieList.begin();
 	while (it != zombieList.end())
 	{
-		if (!(*it)->GetActive())
+		if (!(*it)->GetAlive())
 		{
 			zombiePool.push_back(*it);
 			it = zombieList.erase(it);
@@ -92,7 +92,7 @@ void SceneGame3::Update(float dt)
 
 	if (zombieList.empty())
 	{
-		SCENE_MGR.ChangeScene(SceneIds::Mode);
+		SCENE_MGR.ChangeScene(SceneIds::Title);
 		return;
 	}
 

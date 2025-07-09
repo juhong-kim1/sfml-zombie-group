@@ -9,6 +9,7 @@ private:
     static float runSpeed;
     static int healAmount;
     static int ammoAmount;
+    static int sceneId;
 
 public:
     static float GetRateOfFire() { return rateOfFire; }
@@ -17,6 +18,7 @@ public:
     static float GetRunSpeed() { return runSpeed; }
     static int GetHealAmount() { return healAmount; }
     static int GetAmmoAmount() { return ammoAmount; }
+    static int GetSceneId() { return sceneId; }
 
     static void IncreaseRateOfFire(float amount);
     static void IncreaseClipSize(int amount);
@@ -24,4 +26,7 @@ public:
     static void IncreaseRunSpeed(float amount);
     static void IncreaseHealAmount(int amount);
     static void IncreaseAmmoAmount(int amount);
+    static void SetNextScene();
+    static void SceneReset();
+    static void DataReset();
 };

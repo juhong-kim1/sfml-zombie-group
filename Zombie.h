@@ -82,6 +82,7 @@ public:
 	void Movement(float dt);
 	void UpdateHpBar();
 	void Die();
+	bool GetAlive() const { return isAlive; }
 
 	const HitBox& GetHitBox() const
 	{

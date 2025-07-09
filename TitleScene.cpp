@@ -2,6 +2,7 @@
 #include "TitleScene.h"
 #include "SpriteGo.h"
 #include "TextGo.h"
+#include "DataStruct.h"
 
 void TitleScene::screenchange(const std::string& msg)
 {
@@ -24,6 +25,8 @@ void TitleScene::Enter()
 	SpriteGo* bg = new SpriteGo("graphics/background.png", "Background");
 	AddGameObject(bg);
 	bg->Init();
+
+	DataStruct::DataReset();
 
 	const sf::Texture* bgTex = bg->GetSprite().getTexture();
 	if (!bgTex)

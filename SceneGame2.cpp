@@ -79,7 +79,7 @@ void SceneGame2::Update(float dt)
 	auto it = zombieList.begin();
 	while (it != zombieList.end())
 	{
-		if (!(*it)->GetActive())
+		if (!(*it)->GetAlive())
 		{
 			zombiePool.push_back(*it);
 			it = zombieList.erase(it);
@@ -92,7 +92,7 @@ void SceneGame2::Update(float dt)
 
 	if (zombieList.empty())
 	{
-		SCENE_MGR.ChangeScene(SceneIds::Game3);
+		SCENE_MGR.ChangeScene(SceneIds::Mode);
 		return;
 	}
 
@@ -129,7 +129,6 @@ void SceneGame2::SpawnZombies(int count)
 			zombiePool.pop_front();
 			zombie->SetActive(true);
 		}
-		zombie->SetRandomType();
 		zombie->Reset();
 		zombie->SetPosition(Utils::RandomInUnitCircle() * 500.f);
 		zombieList.push_back(zombie);

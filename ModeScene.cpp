@@ -114,7 +114,7 @@ void ModeScene::OnOptionClicked(size_t index)
 	case 0:
 		std::cout << "�߻�ӵ� ���� ��� ���õ�\n";
 		std::cout << DataStruct::GetRateOfFire();
-		DataStruct::IncreaseRateOfFire(0.1f);
+		DataStruct::IncreaseRateOfFire(0.3f);
 		std::cout << " �� " << DataStruct::GetRateOfFire() << std::endl;
 		break;
 	case 1:
@@ -123,11 +123,11 @@ void ModeScene::OnOptionClicked(size_t index)
 		break;
 	case 2:
 		std::cout << "ü�� ���� ��� ���õ�\n";
-		DataStruct::IncreaseMaxHealth(10);
+		DataStruct::IncreaseMaxHealth(20);
 		break;
 	case 3:
 		std::cout << "�޸��� �ӵ� ���� ��� ���õ�\n";
-		DataStruct::IncreaseRunSpeed(10);
+		DataStruct::IncreaseRunSpeed(20);
 		break;
 	case 4:
 		std::cout << "ü�� ������ ���� ��� ���õ�\n";
@@ -141,7 +141,8 @@ void ModeScene::OnOptionClicked(size_t index)
 		break;
 	}
 	SoundMgr::Instance().Play("powerup");
-	SCENE_MGR.ChangeScene(SceneIds::Game1);
+	DataStruct::SetNextScene(); // 1 증가
+	SCENE_MGR.ChangeScene((SceneIds)DataStruct::GetSceneId()); // 씬 변경
 }
 void ModeScene::Exit() 
 {
@@ -157,4 +158,4 @@ void ModeScene::Exit()
 	// ���� �׸� �ʱ�ȭ
 	modeOptions.clear();
 
-	}
+}

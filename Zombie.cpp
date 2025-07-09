@@ -46,6 +46,8 @@ void Zombie::SetOrigin(Origins preset)
 
 void Zombie::Init()
 {
+	hitBoxActive = true;
+	isAlive = true;
 }
 
 void Zombie::Release()
@@ -59,6 +61,7 @@ void Zombie::Reset()
 
 	SetRandomType(); // 랜덤 타입 설정
 	hitBoxActive = true;
+	isAlive = true;
 
 	sortingLayer = SortingLayers::Foreground;
 	sortingOrder = 0;

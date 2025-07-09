@@ -6,6 +6,7 @@
 #include "ItemAmmo.h"
 #include "Player.h"
 #include "TileMap.h"
+#include "DataStruct.h"
 
 
 SceneGame1::SceneGame1():Scene(SceneIds::Game1)
@@ -82,7 +83,7 @@ void SceneGame1::Update(float dt)
 	auto it = zombieList.begin();
 	while (it != zombieList.end())
 	{
-		if (!(*it)->GetActive())
+		if (!(*it)->GetAlive())
 		{
 			zombiePool.push_back(*it);
 			it = zombieList.erase(it);
@@ -95,7 +96,7 @@ void SceneGame1::Update(float dt)
 
 	if (zombieList.empty())
 	{
-		SCENE_MGR.ChangeScene(SceneIds::Game2);
+		SCENE_MGR.ChangeScene(SceneIds::Mode);
 		return;
 	}
 
@@ -132,7 +133,6 @@ void SceneGame1::SpawnZombies(int count)
 			zombiePool.pop_front();
 			zombie->SetActive(true);
 		}
-		zombie->SetRandomType();
 		zombie->Reset();
 		float x = Utils::RandomRange(-150.f, 150.f);
 		float y = Utils::RandomRange(-150.f, 150.f);
