@@ -3,9 +3,7 @@
 #include "TextGo.h"
 #include "SpriteGo.h"
 #include "TitleScene.h"
-
-
-
+#include "DataStruct.h"
 
 void ModeScene::SetMode(const std::string& msg)
 {
@@ -15,7 +13,6 @@ void ModeScene::SetMode(const std::string& msg)
 		return;
 	}
 }
-
 
 void ModeScene::Init()
 {
@@ -72,11 +69,7 @@ void ModeScene::Enter()
 		
 		modeOptions.push_back(textObj);
 	}
-	
-	
 }
-
-
 
 void ModeScene::Update(float dt)
 {
@@ -116,22 +109,29 @@ void ModeScene::OnOptionClicked(size_t index)
 	{
 	case 0:
 		std::cout << "발사속도 증가 모드 선택됨\n";
-		//SCENE_MGR.ChangeScene(SceneIds::Game1);  // 예시: 게임씬으로 이동
+		std::cout << DataStruct::GetRateOfFire();
+		DataStruct::IncreaseRateOfFire(0.1f);
+		std::cout << " → " << DataStruct::GetRateOfFire() << std::endl;
 		break;
 	case 1:
 		std::cout << "탄창 크기 증가 모드 선택됨\n";
+		DataStruct::IncreaseClipSize(6);
 		break;
 	case 2:
 		std::cout << "체력 증가 모드 선택됨\n";
+		DataStruct::IncreaseMaxHealth(10);
 		break;
 	case 3:
 		std::cout << "달리기 속도 증가 모드 선택됨\n";
+		DataStruct::IncreaseRunSpeed(10);
 		break;
 	case 4:
 		std::cout << "체력 아이템 증가 모드 선택됨\n";
+		DataStruct::IncreaseHealAmount(10);
 		break;
 	case 5:
 		std::cout << "탄약 아이템 증가 모드 선택됨\n";
+		DataStruct::IncreaseAmmoAmount(6);
 		break;
 	default:
 		break;

@@ -27,7 +27,7 @@ void SceneSelect::Update(float dt)
 	if (InputMgr::GetKeyDown(sf::Keyboard::Num1))
 	{
 		std::cout << "Increased rate of Fire" << std::endl;
-		DataStruct::DecreaseRateOfFire(0.1f);
+		DataStruct::IncreaseRateOfFire(0.1f);
 	}
 	else if (InputMgr::GetKeyDown(sf::Keyboard::Num2))
 	{

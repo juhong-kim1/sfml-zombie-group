@@ -25,6 +25,8 @@ protected:
 	int shootInterval = 0.5f;
 	int shootTimer = 0.f;
 	
+	float maxHealth = 0.0f;
+	float health = 0.0f;
 
 public:
 	Player(const std::string& name = "");
@@ -50,6 +52,8 @@ public:
 	void Effect4();
 	void Effect5();
 	void Effect6();
+
+	void SetStats();
 
 	const HitBox& GetHitBox() const
 	{

@@ -1,16 +1,16 @@
 #include "stdafx.h"
 #include "DataStruct.h"
 
-float DataStruct::rateOfFire = 1;
-float DataStruct::clipSize = 1;
+float DataStruct::rateOfFire = 1.0f;
+int DataStruct::clipSize = 6;
 int DataStruct::maxHealth = 100;
 float DataStruct::runSpeed = 50;
 int DataStruct::healAmount = 15;
 int DataStruct::ammoAmount = 15;
 
-void DataStruct::DecreaseRateOfFire(float amount)
+void DataStruct::IncreaseRateOfFire(float amount)
 {
-    if (rateOfFire - amount > 0.1f)
+    if (rateOfFire - amount >= 0.1f)
     {
         rateOfFire -= amount;
     }

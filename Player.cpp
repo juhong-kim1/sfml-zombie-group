@@ -3,6 +3,7 @@
 #include "SceneDev2.h"
 #include "HitBox.h"
 #include "Bullet.h"
+#include "DataStruct.h"
 
 Player::Player(const std::string& name)
 	: GameObject(name)
@@ -67,6 +68,9 @@ void Player::Reset()
 {
 	sceneDev2 = (SceneDev2*)SCENE_MGR.GetCurrentScene();
 
+	SetStats(); // ½ºÅÈ Àû¿ë
+	health = maxHealth;
+
 	for (Bullet* bullet : bulletList)
 	{
 		bullet->SetActive(false);
@@ -84,7 +88,6 @@ void Player::Reset()
 
 	/*shootInterval = 0.2f;
 	shootTimer = 0.f;*/
-
 }
 
 void Player::Update(float dt)
@@ -164,27 +167,10 @@ void Player::Shoot()
 	sceneDev2->AddGameObject(bullet);
 }
 
-
-void Player::Effect1()
+void Player::SetStats()
 {
-}
-
-void Player::Effect2()
-{
-}
-
-void Player::Effect3()
-{
-}
-
-void Player::Effect4()
-{
-}
-
-void Player::Effect5()
-{
-}
-
-void Player::Effect6()
-{
+	shootInterval = DataStruct::GetRateOfFire();
+	//clip = DataStruct::GetClipSize();
+	maxHealth = DataStruct::GetMaxHealth();
+	speed = DataStruct::GetRunSpeed();
 }

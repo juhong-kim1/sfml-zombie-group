@@ -3,7 +3,6 @@
 #include "SpriteGo.h"
 #include "TextGo.h"
 
-
 void TitleScene::screenchange(const std::string& msg)
 {
 	if (screenselect == nullptr) // Check if modetitle is initialized
@@ -13,14 +12,12 @@ void TitleScene::screenchange(const std::string& msg)
 	}
 }
 
-
 void TitleScene::Init()
 {
-
 	texIds.push_back("graphics/background.png");
 	fontIds.push_back("fonts/zombiecontrol.ttf");
-
 }
+
 void TitleScene::Enter()
 {
 	Scene::Enter();
@@ -68,7 +65,6 @@ void TitleScene::Enter()
 	}
 }
 
-
 void TitleScene::Update(float dt)
 {
 	// 마우스 클릭이 들어왔는지 체크 (왼쪽 버튼 클릭)
@@ -82,6 +78,7 @@ void TitleScene::Update(float dt)
 		SCENE_MGR.ChangeScene(SceneIds::Mode);
 	}
 }
+
 void TitleScene::Draw(sf::RenderWindow& window)  
 {  
     Scene::Draw(window);  

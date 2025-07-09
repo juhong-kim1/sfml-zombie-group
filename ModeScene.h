@@ -24,7 +24,6 @@ class ModeScene :public Scene
 
 	Gametitle changeScene = Gametitle::title;
 
-
 public:
 	ModeScene() :Scene(SceneIds::Mode) {}
 	~ModeScene() override = default;
@@ -36,6 +35,4 @@ public:
 	void Draw(sf::RenderWindow& window);
 
 	void OnOptionClicked(size_t index);//클릭 콜백 함수
-
 };
-
