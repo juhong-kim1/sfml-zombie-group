@@ -13,6 +13,7 @@ SceneDev2::SceneDev2() : Scene(SceneIds::Dev2)
 
 void SceneDev2::Init()
 {
+	
 	texIds.push_back("graphics/player.png");
 	texIds.push_back("graphics/background_sheet.png");
 	texIds.push_back("graphics/bloater.png");
@@ -24,6 +25,7 @@ void SceneDev2::Init()
 	texIds.push_back("graphics/blood.png");
 
 	fontIds.push_back("fonts/DS-DIGIT.ttf");
+	fontIds.push_back("fonts/zombiecontrol.ttf");
 
 	AddGameObject(new TileMap("TileMap"));
 	player = (Player*)AddGameObject(new Player("Player"));
@@ -40,9 +42,35 @@ void SceneDev2::Init()
 
 void SceneDev2::Enter()
 {
-	//std::cout << " SceneDev2::Enter() 호출됨" << std::endl;
-	
+	Scene::Enter();
+
+	const sf::Font& font = FONT_MGR.Get("fonts/zombiecontrol.ttf");
+
 	sf::Vector2f windowSize = FRAMEWORK.GetWindowSizeF();
+
+
+	waveText.setFont(font);
+	waveText.setCharacterSize(40);
+	waveText.setFillColor(sf::Color::White);
+	waveText.setStyle(sf::Text::Bold);
+	waveText.setPosition(1400.f, 950.f);
+
+	// 좀비 수 텍스트
+	zombieCountText.setFont(font);
+	zombieCountText.setCharacterSize(40);
+	zombieCountText.setFillColor(sf::Color::White);
+	zombieCountText.setStyle(sf::Text::Bold);
+	zombieCountText.setPosition(1400.f, 1000.f);
+
+	pauseText.setFont(font);
+	pauseText.setString("PRESS ENTER\nTO CONTINUE");
+	pauseText.setCharacterSize(180);
+	pauseText.setFillColor(sf::Color::White);
+	pauseText.setStyle(sf::Text::Bold);
+
+
+	pauseText.setOrigin(pauseText.getLocalBounds().width / 2.f, pauseText.getLocalBounds().height / 2.f);
+	pauseText.setPosition(FRAMEWORK.GetWindowSizeF() * 0.5f);
 
 	worldView.setSize(windowSize);
 	worldView.setCenter( windowSize * 0.5f);
@@ -68,7 +96,21 @@ void SceneDev2::Exit()
 
 void SceneDev2::Update(float dt)
 {
+	// 텍스트 내용 업데이트
+	waveText.setString("Wave: " + std::to_string(wave));
+	zombieCountText.setString("Zombies: " + std::to_string(zombieList.size()));
+	
+	
+	if (InputMgr::GetKeyDown(sf::Keyboard::Enter))
+	{
+		isPaused = !isPaused;
+	}
+	if (isPaused)
+	{
+		return;
+	}
 	Scene::Update(dt);
+
 
 	if (player != nullptr)
 	{
@@ -97,13 +139,20 @@ void SceneDev2::Update(float dt)
 
 void SceneDev2::Draw(sf::RenderWindow& window)
 {
-	window.setView(worldView);
-
+	window.setView(worldView);//wave 표시
 	Scene::Draw(window);
 
-	window.setView(uiView);
+	window.setView(uiView);//ui 뷰로 전환
+	window.draw(zombieCountText);//좀비 수 표시
+	window.draw(waveText);
 
-	//window.draw(cursor);
+
+	if (isPaused)
+	{
+		window.setView(uiView);
+		window.draw(pauseText);
+	}
+
 }
 
 void SceneDev2::SpawnZombies(int count)
@@ -155,6 +204,11 @@ void SceneDev2::SpawnItems(int counts)
 			itemList.push_back(item);
 		}
 	}
+}
+
+
+void SceneDev2::setTextZombie(int count)
+{
 }
 
 TileMap* SceneDev2::GetTileMap()
