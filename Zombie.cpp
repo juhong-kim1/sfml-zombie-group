@@ -119,7 +119,7 @@ void Zombie::Attack(float dt)
 	{
 		attackTimer = 0;
 		// 플레이어 데미지 메서드 호출
-		//target->OnDamage(damage);
+		target->OnDamage(damage);
 		std::cout << "공격" << std::endl;
 	}
 }

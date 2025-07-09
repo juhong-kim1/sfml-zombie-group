@@ -82,9 +82,9 @@ void Player::Reset()
 	direction = { 0.f, 0.f };
 	look = { 1.f, 1.f };
 
-	/*shootInterval = 0.2f;
-	shootTimer = 0.f;*/
-
+	shootTimer = 0.f;
+	hp = maxHp;
+	attackTimer = 0.f;
 }
 
 void Player::Update(float dt)
@@ -125,14 +125,12 @@ void Player::Update(float dt)
 
 	hitBox.UpdateTransform(player, player.getLocalBounds());
 
-	if (InputMgr::GetMouseButton(sf::Mouse::Left))
+	shootTimer += dt;
+
+	if (InputMgr::GetMouseButton(sf::Mouse::Left) && shootTimer > shootInterval)
 	{
-		shootTimer += dt;
-		if (shootInterval >= shootTimer)
-		{
-			Shoot();
-			shootTimer = 0;
-		}
+		shootTimer = 0.f;
+		Shoot();
 	}
 }
 
@@ -151,7 +149,7 @@ void Player::Shoot()
 		bullet->Init();
 	}
 	else
-	{
+	{ 
 		bullet = bulletPool.front();
 		bulletPool.pop_front();
 		bullet->SetActive(true);
@@ -162,6 +160,22 @@ void Player::Shoot()
 
 	bulletList.push_back(bullet);
 	sceneDev2->AddGameObject(bullet);
+}
+
+
+void Player::OnDamage(int damage)
+{
+	if (!isAlive())
+	{
+		return;
+	}
+
+	hp = Utils::Clamp(hp - damage, 0, maxHp);
+	if (hp == 0)
+	{
+		SCENE_MGR.ChangeScene(SceneIds::Mode);
+
+	}
 }
 
 

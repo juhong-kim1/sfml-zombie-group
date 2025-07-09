@@ -5,6 +5,7 @@
 #include "ItemHealthPack.h"
 #include "ItemAmmo.h"
 #include "Player.h"
+#include "TileMap.h"
 
 SceneDev2::SceneDev2() : Scene(SceneIds::Game6)
 {
@@ -12,17 +13,18 @@ SceneDev2::SceneDev2() : Scene(SceneIds::Game6)
 
 void SceneDev2::Init()
 {
+	texIds.push_back("graphics/player.png");
+	texIds.push_back("graphics/background_sheet.png");
 	texIds.push_back("graphics/bloater.png");
 	texIds.push_back("graphics/chaser.png");
 	texIds.push_back("graphics/crawler.png");
 	texIds.push_back("graphics/health_pickup.png");
 	texIds.push_back("graphics/ammo_pickup.png");
-	texIds.push_back("graphics/player.png");
 	texIds.push_back("graphics/bullet.png");
 
 	fontIds.push_back("fonts/DS-DIGIT.ttf");
 
-
+	AddGameObject(new TileMap("TileMap"));
 	player = (Player*)AddGameObject(new Player("Player"));
 	// �ʱ� ���� ����
 	for (int i = 0; i < 100; ++i)
@@ -130,7 +132,6 @@ void SceneDev2::SpawnItems(int counts)
 	{
 		Item* item = nullptr;
 
-		// ������ ���� ���� ����
 		int random = Utils::RandomRange(0, (int)Item::ItemType::count);
 
 		if (random == (int)Item::ItemType::HealthPack)

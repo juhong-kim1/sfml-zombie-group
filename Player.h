@@ -22,8 +22,12 @@ protected:
 	SceneDev2* sceneDev2 = nullptr;
 	HitBox hitBox;
 
-	int shootInterval = 0.5f;
-	int shootTimer = 0.f;
+	float attackTimer = 0.f;
+
+	float shootInterval = 0.4f;
+	float shootTimer = 0.f;
+	int hp = 0;
+	int maxHp = 100;
 	
 
 public:
@@ -56,5 +60,9 @@ public:
 		return hitBox;
 	}
 
+	bool isAlive() { return hp > 0; }
+
 	void Shoot();
+
+	void OnDamage(int damage);
 };

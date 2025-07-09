@@ -106,10 +106,11 @@ void TileMap::SetOrigin(Origins preset)
 
 void TileMap::Init()
 {
+	sortingLayer = SortingLayers::Background;
 	SceneId = SceneIds::Game1;
 	SceneOrder = 0;
 
-	Set({ 10, 10 }, { 10.f, 10.f });
+	Set({ 50, 50 }, { 50.f, 50.f });
 }
 
 void TileMap::Release()
