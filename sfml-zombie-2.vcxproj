@@ -96,6 +96,7 @@
   <!-- 다른 ConfigurationGroup 생략 (위와 동일한 구조) -->
   <ItemGroup>
     <ClCompile Include="Bullet.cpp" />
+    <ClCompile Include="DataStruct.cpp" />
     <ClCompile Include="Framework\Framework.cpp" />
     <ClCompile Include="Framework\GameObject.cpp" />
     <ClCompile Include="Framework\InputMgr.cpp" />
@@ -111,7 +112,15 @@
     <ClCompile Include="SceneDev2.cpp" />
     <ClCompile Include="Framework\SceneMgr.cpp" />
     <ClCompile Include="SceneGame.cpp" />
+    <ClCompile Include="Game1.cpp" />
     <ClCompile Include="ModeScene.cpp" />
+    <ClCompile Include="SceneGame1.cpp" />
+    <ClCompile Include="SceneGame2.cpp" />
+    <ClCompile Include="SceneGame3.cpp" />
+    <ClCompile Include="SceneGame4.cpp" />
+    <ClCompile Include="SceneGame5.cpp" />
+    <ClCompile Include="SceneGame6.cpp" />
+    <ClCompile Include="SceneSelect.cpp" />
     <ClCompile Include="stdafx.cpp">
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">Create</PrecompiledHeader>
     </ClCompile>
@@ -124,6 +133,7 @@
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Bullet.h" />
+    <ClInclude Include="DataStruct.h" />
     <ClInclude Include="Framework\Framework.h" />
     <ClInclude Include="Framework\Defines.h" />
     <ClInclude Include="Framework\GameObject.h" />
@@ -137,17 +147,29 @@
     <ClInclude Include="Item.h" />
     <ClInclude Include="ItemAmmo.h" />
     <ClInclude Include="ItemHealthPack.h" />
+    <ClInclude Include="Player.h" />
     <ClInclude Include="SceneDev2.h" />
     <ClInclude Include="Framework\SceneMgr.h" />
     <ClInclude Include="SceneGame.h" />
+    <ClInclude Include="SceneGame1.h" />
+    <ClInclude Include="SceneGame2.h" />
+    <ClInclude Include="SceneGame3.h" />
+    <ClInclude Include="SceneGame4.h" />
+    <ClInclude Include="SceneGame5.h" />
+    <ClInclude Include="SceneGame6.h" />
+    <ClInclude Include="SceneSelect.h" />
     <ClInclude Include="stdafx.h" />
     <ClInclude Include="Framework\TextGo.h" />
     <ClInclude Include="Framework\Utils.h" />
     <ClInclude Include="Variables.h" />
     <ClInclude Include="Zombie.h" />
+    <ClInclude Include="Game1.h" />
     <ClInclude Include="ModeScene.h" />
     <ClInclude Include="TileMap.h" />
     <ClInclude Include="TitleScene.h" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include=".gitignore" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets" />

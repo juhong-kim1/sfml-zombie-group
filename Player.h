@@ -42,7 +42,8 @@ public:
 	void Effect5();
 	void Effect6();
 
-
-
+	const HitBox& GetHitBox() const
+	{
+		return hitBox;
+	}
 };
-
