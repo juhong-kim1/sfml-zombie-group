@@ -3,6 +3,7 @@
 #include "HitBox.h"
 
 class Player;
+class Scene;
 
 enum class Type
 {
@@ -18,7 +19,7 @@ protected:
 	sf::Sprite sprite;
 	std::string texId = "graphics/bloater.png";
 	std::string bloodTexId = "graphics/blood.png";
-
+	Scene* parentScene = nullptr;
 	Player* target = nullptr;
 
 	sf::Vector2f direction = { 0.0f, 0.0f };
@@ -82,7 +83,7 @@ public:
 	void Movement(float dt);
 	void UpdateHpBar();
 	void Die();
-
+	void SetParentScene(Scene* scene);
 	const HitBox& GetHitBox() const
 	{
 		if (hitBoxActive)

@@ -1,9 +1,9 @@
 #pragma once
 #include "Scene.h"
 
+class Player;
 class Zombie;
 class Item;
-class Player;
 class TileMap;
 
 class SceneDev2 : public Scene

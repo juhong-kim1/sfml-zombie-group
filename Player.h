@@ -44,7 +44,8 @@ protected:
 public:
 	Player(const std::string& name = "");
 	virtual ~Player() = default;
-
+	int GetReserveAmmo() const;
+	int GetAmmoInClip() const { return ammoInClip; }
 	bool CheckBorder(const sf::Vector2f pos);
 
 	void SetPosition(const sf::Vector2f& pos) override;
@@ -67,6 +68,7 @@ public:
 	{
 		return hitBox;
 	}
+	
 
 	bool isAlive() { return hp > 0; }
 

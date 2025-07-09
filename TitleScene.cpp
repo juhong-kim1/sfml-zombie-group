@@ -2,6 +2,7 @@
 #include "TitleScene.h"
 #include "SpriteGo.h"
 #include "TextGo.h"
+#include "GameData.h"
 
 void TitleScene::screenchange(const std::string& msg)
 {
@@ -47,11 +48,12 @@ void TitleScene::Enter()
 	screen->SetFillColor(sf::Color::White);
 	screen->SetPosition({ 320.0f, 350.f });
 
-	score = (TextGo*)AddGameObject(new TextGo("fonts/zombiecontrol.ttf"));
-	score->SetString("HI SCORE: ");
-	score->SetCharacterSize(50);
-	score->SetFillColor(sf::Color::White);
-	score->SetPosition({ 1350.0f, 30.f });
+	hiScoreText = (TextGo*)AddGameObject(new TextGo("fonts/zombiecontrol.ttf"));
+	hiScoreText->SetCharacterSize(50);
+	hiScoreText->SetFillColor(sf::Color::White);
+	hiScoreText->SetPosition({ 1350.f, 30.f });
+	hiScoreText->SetString("HI SCORE: " + std::to_string(GameData::hiScore));
+	
 
 	clickStart = (TextGo*)AddGameObject(new TextGo("fonts/zombiecontrol.ttf"));
 	clickStart->SetString("Click to start");
@@ -70,12 +72,14 @@ void TitleScene::Enter()
 	{
 		screen->GetText().setFont(font); 
 		clickStart->GetText().setFont(font);
-		score->GetText().setFont(font);
+		hiScoreText->GetText().setFont(font);
 	}
 }
 
 void TitleScene::Update(float dt)
-{
+{ 
+	// hiScoreText도 계속 최신값으로 갱신 (옵션)
+	hiScoreText->SetString("HI SCORE: " + std::to_string(GameData::hiScore));
 	// 마우스 클릭이 들어왔는지 체크 (왼쪽 버튼 클릭)
 	if (sf::Mouse::isButtonPressed(sf::Mouse::Left))
 	{
@@ -91,4 +95,9 @@ void TitleScene::Update(float dt)
 void TitleScene::Draw(sf::RenderWindow& window)  
 {  
     Scene::Draw(window);  
+
+	if (hiScoreText)
+	{
+		window.draw(hiScoreText->GetText());
+	}
 }

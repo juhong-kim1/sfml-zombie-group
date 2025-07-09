@@ -15,6 +15,17 @@ protected:
 
 	Player* player = nullptr;
 	TileMap* tileMap = nullptr;
+	
+	bool isPaused = false;
+	sf::Text pauseText;
+	sf::Text waveText;
+	sf::Text zombieCountText;
+	sf::Text ammoText;
+	sf::Text scoreText;
+	sf::Text hiScoreText;
+	int wave = 1;
+	int currentScore = 0;
+	int zombie = 1;
 
 public:
 	SceneGame1();
@@ -31,6 +42,7 @@ public:
 	{
 		return zombieList;
 	}
-	TileMap* GetTileMap();
 
+	TileMap* GetTileMap();
+	void AddScore(int amount);
 };

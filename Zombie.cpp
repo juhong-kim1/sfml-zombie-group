@@ -5,6 +5,7 @@
 #include "SceneGame1.h"
 #include "SceneGame2.h"
 #include "SceneGame3.h"
+#include "GameData.h"
 
 Zombie::Zombie(const std::string& name)
 	: GameObject(name)
@@ -126,6 +127,7 @@ void Zombie::Draw(sf::RenderWindow& window)
 
 	hitBox.Draw(window);
 }
+
 
 // 좀비 피격
 void Zombie::OnDamage(int damage)
@@ -259,6 +261,9 @@ void Zombie::UpdateHpBar()
 // 사망 처리
 void Zombie::Die()
 {
+	if (!isAlive) return;
+	SceneGame1* gameScene = dynamic_cast<SceneGame1*>(parentScene);
+	
 	// 사망 이펙트
 	isAlive = false;
 	sprite.setTexture(TEXTURE_MGR.Get(bloodTexId), true);
@@ -268,4 +273,20 @@ void Zombie::Die()
 	sortingLayer = SortingLayers::Background;
 	sortingOrder = 1;
 	hitBoxActive = false;
+
+	if (parentScene != nullptr)
+	{
+		SceneGame1* gameScene = dynamic_cast<SceneGame1*>(parentScene);
+		if (gameScene != nullptr)
+		{
+			gameScene->AddScore(100); // 100점 추가
+		}
+	}
 }
+
+void Zombie::SetParentScene(Scene* scene)
+{
+	parentScene = scene;
+}
+
+

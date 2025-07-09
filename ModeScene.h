@@ -22,7 +22,7 @@ class ModeScene :public Scene
 	TextGo* Textgo_5;
 	TextGo* Textgo_6;
 
-	Gametitle changeScene = Gametitle::title;
+	Gametitle changeScene;
 
 public:
 	ModeScene() :Scene(SceneIds::Mode) {}
