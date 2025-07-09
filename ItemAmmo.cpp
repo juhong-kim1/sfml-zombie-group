@@ -1,6 +1,7 @@
 #include "stdafx.h"
 #include "ItemAmmo.h"
 #include "Player.h"
+#include "DataStruct.h"
 
 ItemAmmo::ItemAmmo(const std::string& name)
 	:Item(name)
@@ -78,7 +79,7 @@ void ItemAmmo::Draw(sf::RenderWindow& window)
 void ItemAmmo::Use()
 {
 	// 플레이어 총알 충전
-	std::cout << "탄창 충전" << std::endl;
+	target->AddReserveAmmo(DataStruct::GetAmmoAmount());
 
 	// 사용 후 비활성화
 	SetActive(false);

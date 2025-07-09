@@ -1,6 +1,7 @@
 #include "stdafx.h"
 #include "ItemHealthPack.h"
 #include "Player.h"
+#include "DataStruct.h"
 
 
 ItemHealthPack::ItemHealthPack(const std::string& name)
@@ -80,8 +81,7 @@ void ItemHealthPack::Draw(sf::RenderWindow& window)
 void ItemHealthPack::Use()
 {
 	// 체력 회복
-	 //playerHp += 10;
-	std::cout << "체력 회복" << std::endl;
+	target->RestoreHealth(DataStruct::GetHealAmount());
 
 	// 사용 후 비활성화
 	SetActive(false);

@@ -184,6 +184,19 @@ void Player::Shoot()
 }
 
 
+void Player::RestoreHealth(int amount)
+{
+	if (health + amount < maxHealth)
+	{
+		health += amount;
+	}
+	else
+	{
+		health = maxHealth;
+	}
+	std::cout << health << std::endl;
+}
+
 void Player::OnDamage(int damage)
 {
 	if (!isAlive())
@@ -196,6 +209,11 @@ void Player::OnDamage(int damage)
 	{
 		SCENE_MGR.ChangeScene(SceneIds::Mode);
 	}
+}
+
+void Player::AddReserveAmmo(int amount)
+{
+	reserveAmmo += amount;
 }
 
 void Player::SetStats()

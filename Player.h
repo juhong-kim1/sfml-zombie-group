@@ -68,5 +68,7 @@ public:
 
 	void Shoot();
 
+	void RestoreHealth(int amount);
 	void OnDamage(int damage);
+	void AddReserveAmmo(int amount);
 };
