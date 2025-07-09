@@ -33,6 +33,7 @@ public:
 	void Enter() override;
 	void Update(float dt) override;
 	void Draw(sf::RenderWindow& window);
+	void Exit()override;
 
 	void OnOptionClicked(size_t index);//클릭 콜백 함수
 };

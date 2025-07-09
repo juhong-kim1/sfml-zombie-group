@@ -183,7 +183,7 @@ void Player::OnDamage(int damage)
 }
 
 
-void Player::Effect1()
+
 void Player::SetStats()
 {
 	shootInterval = DataStruct::GetRateOfFire();

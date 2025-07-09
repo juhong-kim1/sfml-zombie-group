@@ -33,16 +33,17 @@ void Scene::Release()
 
 void Scene::Enter()
 {
+
 	TEXTURE_MGR.Load(texIds);
 	FONT_MGR.Load(fontIds);
 	SOUNDBUFFER_MGR.Load(soundIds);
-	// �ؽ�ó ũ�� ��������
-	const sf::Texture& tex = TEXTURE_MGR.Get("graphics/background.png");
-	sf::Vector2u texSize = tex.getSize();
+	
+	sf::Vector2f windowSize = FRAMEWORK.GetWindowSizeF();
+	worldView.setSize(windowSize);
+	worldView.setCenter(windowSize * 0.5f);
 
-	worldView.setSize((float)texSize.x, (float)texSize.y);
-	worldView.setCenter(texSize.x / 2.f, texSize.y / 2.f);
-	FRAMEWORK.GetWindow().setView(worldView);
+	uiView.setSize(windowSize);
+	uiView.setCenter(windowSize * 0.5f);
 
 
 	for (auto obj : gameObjects)
@@ -65,7 +66,7 @@ void Scene::Exit()
 	SOUNDBUFFER_MGR.Unload(soundIds);
 }
 
-void Scene::Update(float dt)
+void Scene::Update(float dt) 
 {
 	for (auto obj : gameObjects)
 	{
@@ -83,7 +84,7 @@ void Scene::Draw(sf::RenderWindow& window)
 	std::list<GameObject*> sortedObjects(gameObjects);
 	sortedObjects.sort(DrawOrderComparer());
 
-	window.setView(worldView);
+ 	window.setView(worldView);
 	bool isUiView = false;
 
 	for (auto obj : sortedObjects)
@@ -108,12 +109,11 @@ void Scene::ApplyPendingChanges()
 	{
 		if (std::find(gameObjects.begin(), gameObjects.end(), go) == gameObjects.end())
 		{
-			gameObjects.push_back(go);
+ 			gameObjects.push_back(go);
 		}
-	}
+	} 
 	objectsToAdd.clear();
-
-	for (GameObject* go : objectsToRemove)
+ 	for (GameObject* go : objectsToRemove)
 	{
 		gameObjects.remove(go);
 		if (go != nullptr)

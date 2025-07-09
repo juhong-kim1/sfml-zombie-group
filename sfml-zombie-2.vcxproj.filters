@@ -23,7 +23,6 @@
     <ClCompile Include="TitleScene.cpp" />
     <ClCompile Include="Variables.cpp" />
     <ClCompile Include="Zombie.cpp" />
-    <ClCompile Include="SceneSelect.cpp" />
     <ClCompile Include="SceneGame1.cpp" />
     <ClCompile Include="SceneGame2.cpp" />
     <ClCompile Include="SceneGame3.cpp" />
@@ -59,7 +58,6 @@
     <ClInclude Include="TileMap.h" />
     <ClInclude Include="TitleScene.h" />
     <ClInclude Include="Player.h" />
-    <ClInclude Include="SceneSelect.h" />
     <ClInclude Include="SceneGame1.h" />
     <ClInclude Include="SceneGame2.h" />
     <ClInclude Include="SceneGame3.h" />

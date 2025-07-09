@@ -4,7 +4,7 @@
 float DataStruct::rateOfFire = 1.0f;
 int DataStruct::clipSize = 6;
 int DataStruct::maxHealth = 100;
-float DataStruct::runSpeed = 50;
+float DataStruct::runSpeed = 500;
 int DataStruct::healAmount = 15;
 int DataStruct::ammoAmount = 15;
 

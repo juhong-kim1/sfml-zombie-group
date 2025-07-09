@@ -39,10 +39,12 @@ void SceneDev2::Init()
 
 void SceneDev2::Enter()
 {
+	//std::cout << " SceneDev2::Enter() 호출됨" << std::endl;
+	
 	sf::Vector2f windowSize = FRAMEWORK.GetWindowSizeF();
 
 	worldView.setSize(windowSize);
-	worldView.setCenter({ windowSize * 0.5f });
+	worldView.setCenter( windowSize * 0.5f);
 
 	uiView.setSize(windowSize);
 	uiView.setCenter(windowSize * 0.5f);

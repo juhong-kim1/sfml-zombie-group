@@ -31,7 +31,7 @@ void ModeScene::Enter()
 	if (!bgTex)
 	{
 		std::cerr << "배경 텍스처가 설정되지 않았습니다!" << std::endl;
-		return; // 더 이상 진행하지 않음
+		
 	}
 	bg->SetOrigin(Origins::TL);
 	bg->SetPosition({ 0.f, 0.f });
@@ -86,16 +86,8 @@ void ModeScene::Update(float dt)
 
 			if (bounds.contains(mouseWorldPos))
 			{
-				if (i == 0)//첫번째 버튼
-				{
-					std::cout << "SceneIds::Dev2 enum index: " << (int)SceneIds::Dev2 << std::endl;
-					SceneMgr::Instance().ChangeScene(SceneIds::Dev2);
-				  }
-				if (i == 1)
-				{
-					SceneMgr::Instance().ChangeScene(SceneIds::Game1);
-				}
-				
+				OnOptionClicked(i);
+			
 				break;
 			}
 		}
@@ -105,6 +97,7 @@ void ModeScene::Update(float dt)
 		SCENE_MGR.ChangeScene(SceneIds::Title);
 			return;
 	}
+
 	
 }
 void ModeScene::Draw(sf::RenderWindow& window)
@@ -147,6 +140,20 @@ void ModeScene::OnOptionClicked(size_t index)
 	default:
 		break;
 	}
-
-	SCENE_MGR.ChangeScene(SceneIds::Game1);
+	SCENE_MGR.ChangeScene(SceneIds::Dev2);
 }
+void ModeScene::Exit() 
+{
+	Scene::Exit();
+
+	// 모든 게임 오브젝트 제거
+	for (auto go : gameObjects)
+	{
+		delete go;
+	}
+	gameObjects.clear();
+
+	// 선택 항목도 초기화
+	modeOptions.clear();
+
+	}
