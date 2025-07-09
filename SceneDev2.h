@@ -4,6 +4,7 @@
 class Zombie;
 class Item;
 class Player;
+class TileMap;
 
 class SceneDev2 : public Scene
 {
@@ -28,6 +29,7 @@ public:
 	{
 		return zombieList;
 	}
+	TileMap* GetTileMap();
 
 };
 

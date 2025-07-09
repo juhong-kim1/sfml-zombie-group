@@ -55,7 +55,6 @@ void Zombie::Reset()
 	SetRandomType(); // 랜덤 타입 설정
 
 	SetOrigin(Origins::MC);
-	SetPosition({ 0.0f, 0.0f });
 	SetRotation(0.0f);
 	SetScale({ 1.0f, 1.0f });
 

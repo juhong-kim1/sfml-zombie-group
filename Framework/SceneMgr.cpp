@@ -22,7 +22,6 @@ void SceneMgr::Init()
 	scenes.push_back(new SceneGame4());
 	scenes.push_back(new SceneGame5());
 	scenes.push_back(new SceneDev2());
-	scenes.push_back(new SceneSelect());
 
 	scenes.push_back(new effect(SceneIds::Game1));
 	scenes.push_back(new effect(SceneIds::Game2));

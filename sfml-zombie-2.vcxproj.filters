@@ -25,7 +25,6 @@
     <ClCompile Include="TitleScene.cpp" />
     <ClCompile Include="Variables.cpp" />
     <ClCompile Include="Zombie.cpp" />
-    <ClCompile Include="SceneSelect.cpp" />
     <ClCompile Include="SceneGame1.cpp" />
     <ClCompile Include="SceneGame2.cpp" />
     <ClCompile Include="SceneGame3.cpp" />
@@ -33,6 +32,7 @@
     <ClCompile Include="SceneGame5.cpp" />
     <ClCompile Include="SceneGame6.cpp" />
     <ClCompile Include="effect.cpp" />
+    <ClCompile Include="DataStruct.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Bullet.h" />
@@ -61,7 +61,6 @@
     <ClInclude Include="TileMap.h" />
     <ClInclude Include="TitleScene.h" />
     <ClInclude Include="Player.h" />
-    <ClInclude Include="SceneSelect.h" />
     <ClInclude Include="SceneGame1.h" />
     <ClInclude Include="SceneGame2.h" />
     <ClInclude Include="SceneGame3.h" />
@@ -69,6 +68,7 @@
     <ClInclude Include="SceneGame5.h" />
     <ClInclude Include="SceneGame6.h" />
     <ClInclude Include="effect.h" />
+    <ClInclude Include="DataStruct.h" />
   </ItemGroup>
   <ItemGroup>
     <None Include=".gitignore" />

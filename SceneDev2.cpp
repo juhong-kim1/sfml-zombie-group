@@ -46,6 +46,7 @@ void SceneDev2::Enter()
 
 	uiView.setSize(windowSize);
 	uiView.setCenter(windowSize * 0.5f);
+	SpawnZombies(10);
 
 	Scene::Enter();
 }
@@ -87,7 +88,6 @@ void SceneDev2::Update(float dt)
 
 	if (InputMgr::GetKeyDown(sf::Keyboard::Space))
 	{
-		SpawnZombies(10);
 		SpawnItems(3);
 	}
 }
@@ -119,7 +119,7 @@ void SceneDev2::SpawnZombies(int count)
 			zombiePool.pop_front();
 			zombie->SetActive(true);
 		}
-		//zombie->SetRandomType();
+		zombie->SetRandomType();
 		zombie->Reset();
 		zombie->SetPosition(Utils::RandomInUnitCircle() * 500.f);
 		zombieList.push_back(zombie);
@@ -152,4 +152,9 @@ void SceneDev2::SpawnItems(int counts)
 			itemList.push_back(item);
 		}
 	}
+}
+
+TileMap* SceneDev2::GetTileMap()
+{
+	return (TileMap*)FindGameObject("TileMap");
 }

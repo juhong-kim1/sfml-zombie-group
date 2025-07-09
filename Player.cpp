@@ -4,6 +4,7 @@
 #include "HitBox.h"
 #include "Bullet.h"
 #include "DataStruct.h"
+#include "TileMap.h"
 
 Player::Player(const std::string& name)
 	: GameObject(name)
@@ -119,7 +120,10 @@ void Player::Update(float dt)
 
 	if (!CheckBorder(nextPos))
 	{
-		SetPosition(nextPos);
+		if (!sceneDev2->GetTileMap()->IsWallAt(nextPos))
+		{
+			SetPosition(nextPos);
+		}
 	}
 
 	sf::Vector2i mousePos = InputMgr::GetMousePosition();
@@ -183,7 +187,6 @@ void Player::OnDamage(int damage)
 }
 
 
-void Player::Effect1()
 void Player::SetStats()
 {
 	shootInterval = DataStruct::GetRateOfFire();
