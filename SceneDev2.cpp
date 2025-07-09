@@ -21,6 +21,7 @@ void SceneDev2::Init()
 	texIds.push_back("graphics/health_pickup.png");
 	texIds.push_back("graphics/ammo_pickup.png");
 	texIds.push_back("graphics/bullet.png");
+	texIds.push_back("graphics/blood.png");
 
 	fontIds.push_back("fonts/DS-DIGIT.ttf");
 

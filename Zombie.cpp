@@ -54,6 +54,10 @@ void Zombie::Reset()
 
 	SetRandomType(); // 랜덤 타입 설정
 
+	sortingLayer = SortingLayers::Foreground;
+	sortingOrder = 0;
+	sprite.setColor(sf::Color(255, 255, 255, 255));
+
 	SetOrigin(Origins::MC);
 	SetRotation(0.0f);
 	SetScale({ 1.0f, 1.0f });
@@ -82,6 +86,13 @@ void Zombie::Update(float dt)
 	}
 
 	hitBox.UpdateTransform(sprite, sprite.getLocalBounds());
+
+	if (!isAlive)
+	{
+		fadeTimer += dt;
+		float a = Utils::Lerp(1.0f, 0.0f, fadeTimer / 5.0f, true);
+		sprite.setColor(sf::Color(255, 255, 255, static_cast<sf::Uint8>(a * 255)));
+	}
 }
 
 void Zombie::Draw(sf::RenderWindow& window)
@@ -89,7 +100,7 @@ void Zombie::Draw(sf::RenderWindow& window)
 	window.draw(sprite);
 
 	// 최초 데미지를 입은 후 체력바가 나타나도록 함
-	if (health != maxHealth)
+	if (health != maxHealth && isAlive)
 	{
 		window.draw(hpBarBg);
 		window.draw(hpBar);
@@ -158,14 +169,17 @@ void Zombie::SetRandomType()
 // 좀비 이동
 void Zombie::Movement(float dt)
 {
-	 //이동하고자 하는 방향을 바라보게 회전
-	direction = Utils::GetNormal(target->GetPosition() - position);
-	SetRotation(Utils::Angle(direction));
-
-	// 이동
-	if (Utils::Distance(target->GetPosition(), position) > 0.5f)
+	if (isAlive)
 	{
-		SetPosition(position + direction * speed * dt);
+		//이동하고자 하는 방향을 바라보게 회전
+		direction = Utils::GetNormal(target->GetPosition() - position);
+		SetRotation(Utils::Angle(direction));
+
+		// 이동
+		if (Utils::Distance(target->GetPosition(), position) > 0.5f)
+		{
+			SetPosition(position + direction * speed * dt);
+		}
 	}
 }
 
@@ -182,5 +196,12 @@ void Zombie::UpdateHpBar()
 // 사망 처리
 void Zombie::Die()
 {
-	SetActive(false);
+	// 사망 이펙트
+	isAlive = false;
+	sprite.setTexture(TEXTURE_MGR.Get(bloodTexId), true);
+	SetRotation(0.f);
+
+	// 피가 될 경우 레이어 변경
+	sortingLayer = SortingLayers::Background;
+	sortingOrder = 1;
 }
