@@ -13,7 +13,14 @@ protected:
 	std::list<Zombie*> zombiePool; // ��Ȱ��ȭ�� ����
 	std::list<Item*> itemList;	   // ������ ����Ʈ
 
+	float healthPackRespawnTimer = 0.0f;
+	float ammoRespawnTimer = 0.0f;
+	bool healthPackExists = false;
+	bool ammoExists = false;
+
 	Player* player = nullptr;
+
+	sf::Sprite cursor;
 
 public:
 	SceneGame2();
@@ -32,4 +39,6 @@ public:
 	}
 	TileMap* GetTileMap();
 
+	void SpawnHealthPack();
+	void SpawnAmmo();
 };

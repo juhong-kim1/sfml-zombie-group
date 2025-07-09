@@ -140,7 +140,7 @@ void ModeScene::OnOptionClicked(size_t index)
 	default:
 		break;
 	}
-	SCENE_MGR.ChangeScene(SceneIds::Game1);
+	SCENE_MGR.ChangeScene(SceneIds::Game3);
 }
 void ModeScene::Exit() 
 {

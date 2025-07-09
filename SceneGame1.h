@@ -13,8 +13,15 @@ protected:
 	std::list<Zombie*> zombiePool; // ��Ȱ��ȭ�� ����
 	std::list<Item*> itemList;	   // ������ ����Ʈ
 
+	float healthPackRespawnTimer = 0.0f;
+	float ammoRespawnTimer = 0.0f;
+	bool healthPackExists = false;
+	bool ammoExists = false;
+
 	Player* player = nullptr;
 	TileMap* tileMap = nullptr;
+
+	sf::Sprite cursor;
 
 public:
 	SceneGame1();
@@ -26,11 +33,14 @@ public:
 	void Update(float dt) override;
 	void Draw(sf::RenderWindow& window) override;
 	void SpawnZombies(int count);
-	void SpawnItems(int counts);
+	/*void SpawnItems(int counts);*/
 	std::list<Zombie*> GetZombies()
 	{
 		return zombieList;
 	}
 	TileMap* GetTileMap();
+
+	void SpawnHealthPack();
+	void SpawnAmmo();
 
 };
