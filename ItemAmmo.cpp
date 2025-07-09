@@ -1,6 +1,7 @@
 #include "stdafx.h"
 #include "ItemAmmo.h"
 #include "Player.h"
+#include "DataStruct.h"
 
 ItemAmmo::ItemAmmo(const std::string& name)
 	:Item(name)
@@ -45,6 +46,7 @@ void ItemAmmo::Init()
 	sortingLayer = SortingLayers::Foreground;
 	sortingOrder = -1;
 
+	SoundMgr::Instance().Load("pickup", "Sound/pickup.wav");
 	texId = "graphics/ammo_pickup.png";
 }
 
@@ -78,7 +80,10 @@ void ItemAmmo::Draw(sf::RenderWindow& window)
 void ItemAmmo::Use()
 {
 	// 플레이어 총알 충전
-	std::cout << "탄창 충전" << std::endl;
+	target->AddReserveAmmo(DataStruct::GetAmmoAmount());
+
+	// 효과음
+	SoundMgr::Instance().Play("pickup");
 
 	// 사용 후 비활성화
 	SetActive(false);

@@ -25,6 +25,9 @@ public:
 	void SetOrigin(const sf::Vector2f& o) override;
 	void SetOrigin(Origins preset) override;
 
+	void SetMapSize(int width, int height, float cellWidth, float cellHeight);
+	void SetMapSize(int width, int height);
+
 	bool IsWallAt(const sf::Vector2f& worldPos);
 	void Init() override;
 	void Release() override;

@@ -37,9 +37,11 @@ protected:
 	float speed = 0.0f;
 	int damage = 0;
 
-	float attackInterval = 0.5f;
+	float attackInterval = 1.f;
 	float attackTimer = 0.f;
 	float fadeTimer = 0.f;
+
+	bool hitBoxActive = true;
 
 	sf::Vector2f targetPos = { 100.f, 100.f }; // 플레이어로 변경하기
 	
@@ -83,6 +85,15 @@ public:
 
 	const HitBox& GetHitBox() const
 	{
-		return hitBox;
+		if (hitBoxActive)
+		{
+			return hitBox;
+		}
+		else
+		{
+			static HitBox nullHitBox;
+			nullHitBox.rect.setSize({ 0.f, 0.f });
+			return nullHitBox;
+		}
 	}
 };

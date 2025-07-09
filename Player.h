@@ -2,7 +2,9 @@
 #include "GameObject.h"
 #include "HitBox.h"
 
-class SceneDev2;
+class SceneGame1;
+class SceneGame2;
+class SceneGame3;
 class HitBox;
 class Bullet;
 
@@ -19,7 +21,9 @@ protected:
 	sf::Vector2f direction;
 	float speed = 500.f;
 
-	SceneDev2* sceneDev2 = nullptr;
+	SceneGame1* sceneGame1 = nullptr;
+	SceneGame2* sceneGame2 = nullptr;
+	SceneGame3* sceneGame3 = nullptr;
 	HitBox hitBox;
 
 	float attackTimer = 0.f;
@@ -68,5 +72,7 @@ public:
 
 	void Shoot();
 
+	void RestoreHealth(int amount);
 	void OnDamage(int damage);
+	void AddReserveAmmo(int amount);
 };
