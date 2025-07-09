@@ -4,12 +4,20 @@
 #include "SceneDev2.h"
 #include "TitleScene.h"
 #include"ModeScene.h"
+#include "effect.h"
 
 void SceneMgr::Init()
 {
+
 	scenes.push_back(new TitleScene());
 	scenes.push_back(new ModeScene());
 
+	scenes.push_back(new effect(SceneIds::Game1));
+	scenes.push_back(new effect(SceneIds::Game2));
+	scenes.push_back(new effect(SceneIds::Game3));
+	scenes.push_back(new effect(SceneIds::Game4));
+	scenes.push_back(new effect(SceneIds::Game5));
+	scenes.push_back(new effect(SceneIds::Game6));
 	for (auto scene : scenes)
 	{
 		scene->Init();

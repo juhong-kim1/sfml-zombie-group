@@ -110,3 +110,27 @@ void Player::Draw(sf::RenderWindow& window)
 	window.draw(player);
 	hitBox.Draw(window);
 }
+
+void Player::Effect1()
+{
+}
+
+void Player::Effect2()
+{
+}
+
+void Player::Effect3()
+{
+}
+
+void Player::Effect4()
+{
+}
+
+void Player::Effect5()
+{
+}
+
+void Player::Effect6()
+{
+}

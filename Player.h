@@ -34,6 +34,13 @@ public:
 	void Reset() override;
 	void Update(float dt) override;
 	void Draw(sf::RenderWindow& window) override;
+	
+	void Effect1();
+	void Effect2();
+	void Effect3();
+	void Effect4();
+	void Effect5();
+	void Effect6();
 
 
 
