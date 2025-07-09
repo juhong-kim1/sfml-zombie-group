@@ -76,6 +76,18 @@ void Zombie::Reset()
 
 void Zombie::Update(float dt)
 {
+	attackTimer += dt;
+
+	if (attackTimer > attackInterval)
+	{
+
+		if (Utils::CheckCollision(hitBox.rect, target->GetHitBox().rect))
+		{
+			attackTimer = 0.f;
+			target->OnDamage(damage);
+		}
+	}
+
 	UpdateHpBar(); // 좀비 체력바 업데이트
 	Movement(dt);  // 좀비 이동
 	//Attack(dt);    // 공격
@@ -144,21 +156,21 @@ void Zombie::SetRandomType()
 		texId = "graphics/bloater.png";
 		maxHealth = 200;
 		speed = 50.f;
-		damage = 50;
+		damage = 10;
 	}
 	else if (random == (int)Type::chaser)
 	{
 		texId = "graphics/chaser.png";
 		maxHealth = 100;
 		speed = 150.f;
-		damage = 50;
+		damage = 10;
 	}
 	else if (random == (int)Type::crawler)
 	{
 		texId = "graphics/crawler.png";
 		maxHealth = 100;
 		speed = 30.0f;
-		damage = 50;
+		damage = 10;
 	}
 	
 	sprite.setTexture(TEXTURE_MGR.Get(texId), true);

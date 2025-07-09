@@ -37,7 +37,7 @@ protected:
 	float speed = 0.0f;
 	int damage = 0;
 
-	float attackInterval = 0.5f;
+	float attackInterval = 1.f;
 	float attackTimer = 0.f;
 	float fadeTimer = 0.f;
 
