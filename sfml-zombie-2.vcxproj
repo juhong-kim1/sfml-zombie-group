@@ -96,11 +96,13 @@
   <!-- 다른 ConfigurationGroup 생략 (위와 동일한 구조) -->
   <ItemGroup>
     <ClCompile Include="Bullet.cpp" />
+    <ClCompile Include="DataStruct.cpp" />
     <ClCompile Include="Framework\Framework.cpp" />
     <ClCompile Include="Framework\GameObject.cpp" />
     <ClCompile Include="Framework\InputMgr.cpp" />
     <ClCompile Include="Framework\SpriteGo.cpp" />
     <ClCompile Include="Framework\Scene.cpp" />
+    <ClCompile Include="effect.cpp" />
     <ClCompile Include="HitBox.cpp" />
     <ClCompile Include="Item.cpp" />
     <ClCompile Include="ItemAmmo.cpp" />
@@ -131,6 +133,7 @@
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Bullet.h" />
+    <ClInclude Include="DataStruct.h" />
     <ClInclude Include="Framework\Framework.h" />
     <ClInclude Include="Framework\Defines.h" />
     <ClInclude Include="Framework\GameObject.h" />
@@ -139,6 +142,7 @@
     <ClInclude Include="Framework\Singleton.h" />
     <ClInclude Include="Framework\SpriteGo.h" />
     <ClInclude Include="Framework\Scene.h" />
+    <ClInclude Include="effect.h" />
     <ClInclude Include="HitBox.h" />
     <ClInclude Include="Item.h" />
     <ClInclude Include="ItemAmmo.h" />

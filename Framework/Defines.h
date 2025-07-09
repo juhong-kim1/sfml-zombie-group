@@ -26,7 +26,7 @@ enum class Origins
 	Custom
 };
 
-enum class SceneIds
+enum SceneIds
 {
 	None =-1,
 	Title,

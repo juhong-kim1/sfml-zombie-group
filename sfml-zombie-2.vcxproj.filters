@@ -32,6 +32,7 @@
     <ClCompile Include="SceneGame4.cpp" />
     <ClCompile Include="SceneGame5.cpp" />
     <ClCompile Include="SceneGame6.cpp" />
+    <ClCompile Include="effect.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Bullet.h" />
@@ -67,6 +68,7 @@
     <ClInclude Include="SceneGame4.h" />
     <ClInclude Include="SceneGame5.h" />
     <ClInclude Include="SceneGame6.h" />
+    <ClInclude Include="effect.h" />
   </ItemGroup>
   <ItemGroup>
     <None Include=".gitignore" />

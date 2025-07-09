@@ -10,9 +10,11 @@
 #include"SceneGame5.h"
 #include"SceneGame6.h"
 #include"SceneSelect.h"
+#include "effect.h"
 
 void SceneMgr::Init()
 {
+
 	scenes.push_back(new TitleScene());
 	scenes.push_back(new ModeScene());
 	scenes.push_back(new SceneGame1());
@@ -23,6 +25,12 @@ void SceneMgr::Init()
 	scenes.push_back(new SceneDev2());
 	scenes.push_back(new SceneSelect());
 
+	scenes.push_back(new effect(SceneIds::Game1));
+	scenes.push_back(new effect(SceneIds::Game2));
+	scenes.push_back(new effect(SceneIds::Game3));
+	scenes.push_back(new effect(SceneIds::Game4));
+	scenes.push_back(new effect(SceneIds::Game5));
+	scenes.push_back(new effect(SceneIds::Game6));
 	for (auto scene : scenes)
 	{
 		scene->Init();

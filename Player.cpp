@@ -163,3 +163,28 @@ void Player::Shoot()
 	bulletList.push_back(bullet);
 	sceneDev2->AddGameObject(bullet);
 }
+
+
+void Player::Effect1()
+{
+}
+
+void Player::Effect2()
+{
+}
+
+void Player::Effect3()
+{
+}
+
+void Player::Effect4()
+{
+}
+
+void Player::Effect5()
+{
+}
+
+void Player::Effect6()
+{
+}

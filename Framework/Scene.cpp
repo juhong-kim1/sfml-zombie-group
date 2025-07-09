@@ -1,8 +1,6 @@
 #include "stdafx.h"
 #include "Scene.h"
 
-
-
 Scene::Scene(SceneIds id)
 	: Id(id)
 {
@@ -221,3 +219,7 @@ sf::Vector2i Scene::UiToScreen(sf::Vector2f uiPos)
 {
 	return FRAMEWORK.GetWindow().mapCoordsToPixel(uiPos, uiView);
 }
+
+
+
+

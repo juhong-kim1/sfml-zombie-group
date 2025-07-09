@@ -43,11 +43,7 @@ void ModeScene::Enter()
 	sf::Vector2u texSize = bgTex->getSize();
 	bg->SetScale({ winSize.x / texSize.x, winSize.y / texSize.y });
 
-	modeselect = (TextGo*)AddGameObject(new TextGo("fonts/zombiecontrol.ttf"));
-	modeselect->SetString("1.INCREASED RATE OF FIRE");//1.발사속도 증가
-	modeselect->SetCharacterSize(72);
-	modeselect->SetFillColor(sf::Color::White);
-	modeselect->SetPosition({ 120.0f, 350.f });
+
 
 	const sf::Font& font = FONT_MGR.Get("fonts/zombiecontrol.ttf");
 
@@ -57,8 +53,8 @@ void ModeScene::Enter()
 		"2. INCREASED CLIF SIZECNEXT RELOAD",
 		"3. INCREASED MAX HEALTH",
 		"4. INCREASED RUN SPEED",
-		"5. MORE AND BATTER HEALTH PICKUPS",
-		"6. MORE AND BATTER AMMD PICKUPS",
+		"5. MORE AND BETTER HEALTH PICKUPS",
+		"6. MORE AND BETTER AMMO PICKUPS",
 	};
 	float yStart = 300.f;
 	float yStep = 70.f;
@@ -108,13 +104,6 @@ void ModeScene::Update(float dt)
 			return;
 	}
 	
-	/*for (auto obj : gameObjects)
-	{
-		if (obj->GetActive())
-		{
-			obj->Update(dt);
-		}
-	}*/
 }
 void ModeScene::Draw(sf::RenderWindow& window)
 {
@@ -125,23 +114,23 @@ void ModeScene::OnOptionClicked(size_t index)
 {
 	switch (index)
 	{
-	case 1:
+	case 0:
 		std::cout << "발사속도 증가 모드 선택됨\n";
-		SCENE_MGR.ChangeScene(SceneIds::Game1);  // 예시: 게임씬으로 이동
+		//SCENE_MGR.ChangeScene(SceneIds::Game1);  // 예시: 게임씬으로 이동
 		break;
-	case 2:
+	case 1:
 		std::cout << "탄창 크기 증가 모드 선택됨\n";
 		break;
-	case 3:
+	case 2:
 		std::cout << "체력 증가 모드 선택됨\n";
 		break;
-	case 4:
+	case 3:
 		std::cout << "달리기 속도 증가 모드 선택됨\n";
 		break;
-	case 5:
+	case 4:
 		std::cout << "체력 아이템 증가 모드 선택됨\n";
 		break;
-	case 6:
+	case 5:
 		std::cout << "탄약 아이템 증가 모드 선택됨\n";
 		break;
 	default:
