@@ -48,6 +48,7 @@ void ItemHealthPack::Init()
 	sortingLayer = SortingLayers::Foreground;
 	sortingOrder = -1;
 
+	SoundMgr::Instance().Load("pickup", "Sound/pickup.wav");
 	texId = "graphics/health_pickup.png";
 }
 
@@ -82,6 +83,9 @@ void ItemHealthPack::Use()
 {
 	// 체력 회복
 	target->RestoreHealth(DataStruct::GetHealAmount());
+
+	// 효과음
+	SoundMgr::Instance().Play("pickup");
 
 	// 사용 후 비활성화
 	SetActive(false);

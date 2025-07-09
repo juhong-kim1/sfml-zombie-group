@@ -18,7 +18,7 @@ void ModeScene::Init()
 {
 	texIds.push_back("graphics/background.png");
 	fontIds.push_back("fonts/zombiecontrol.ttf");
-	
+	SoundMgr::Instance().Load("powerup", "sound/powerup.wav");
 }
 void ModeScene::Enter()
 {
@@ -140,6 +140,7 @@ void ModeScene::OnOptionClicked(size_t index)
 	default:
 		break;
 	}
+	SoundMgr::Instance().Play("powerup");
 	SCENE_MGR.ChangeScene(SceneIds::Dev2);
 }
 void ModeScene::Exit() 
