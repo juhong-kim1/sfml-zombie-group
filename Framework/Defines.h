@@ -31,6 +31,7 @@ enum SceneIds
 	None =-1,
 	Title,
 	Mode,
+	Dev2,
 	Game1,
 	Game2,
 	Game3,

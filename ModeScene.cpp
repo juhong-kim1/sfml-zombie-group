@@ -93,7 +93,16 @@ void ModeScene::Update(float dt)
 
 			if (bounds.contains(mouseWorldPos))
 			{
-				OnOptionClicked(i);  // 클릭된 인덱스 전달
+				if (i == 0)//첫번째 버튼
+				{
+					std::cout << "SceneIds::Dev2 enum index: " << (int)SceneIds::Dev2 << std::endl;
+					SceneMgr::Instance().ChangeScene(SceneIds::Dev2);
+				  }
+				if (i == 1)
+				{
+					SceneMgr::Instance().ChangeScene(SceneIds::Game1);
+				}
+				
 				break;
 			}
 		}
@@ -108,6 +117,8 @@ void ModeScene::Update(float dt)
 void ModeScene::Draw(sf::RenderWindow& window)
 {
 	Scene::Draw(window);
+
+	window.setView(uiView);
 }
 
 void ModeScene::OnOptionClicked(size_t index)
@@ -136,4 +147,6 @@ void ModeScene::OnOptionClicked(size_t index)
 	default:
 		break;
 	}
+
+	SCENE_MGR.ChangeScene(SceneIds::Game1);
 }

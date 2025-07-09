@@ -5,7 +5,7 @@
 #include "ItemHealthPack.h"
 #include "ItemAmmo.h"
 
-SceneDev2::SceneDev2() : Scene(SceneIds::Game6)
+SceneDev2::SceneDev2() : Scene(SceneIds::Dev2)
 {
 }
 
@@ -35,7 +35,7 @@ void SceneDev2::Enter()
 	sf::Vector2f windowSize = FRAMEWORK.GetWindowSizeF();
 
 	worldView.setSize(windowSize);
-	worldView.setCenter({ 0.f, 0.f });
+	worldView.setCenter({ windowSize * 0.5f });
 
 	uiView.setSize(windowSize);
 	uiView.setCenter(windowSize * 0.5f);

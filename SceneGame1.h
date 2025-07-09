@@ -8,4 +8,6 @@ protected:
 public:
 	SceneGame1();
 	~SceneGame1() override = default;
+
+
 };

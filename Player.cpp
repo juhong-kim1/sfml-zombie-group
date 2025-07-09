@@ -113,6 +113,7 @@ void Player::Draw(sf::RenderWindow& window)
 
 void Player::Effect1()
 {
+
 }
 
 void Player::Effect2()

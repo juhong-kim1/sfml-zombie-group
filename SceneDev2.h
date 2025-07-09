@@ -11,6 +11,7 @@ protected:
 	std::list<Zombie*> zombiePool; // ��Ȱ��ȭ�� ����
 	std::list<Item*> itemList;	   // ������ ����Ʈ
 
+	
 public:
 	SceneDev2();
 

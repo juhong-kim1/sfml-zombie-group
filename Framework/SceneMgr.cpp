@@ -14,9 +14,9 @@
 
 void SceneMgr::Init()
 {
-
 	scenes.push_back(new TitleScene());
 	scenes.push_back(new ModeScene());
+	scenes.push_back(new SceneDev2());
 	scenes.push_back(new SceneGame1());
 	scenes.push_back(new SceneGame2());
 	scenes.push_back(new SceneGame3());
