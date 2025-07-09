@@ -90,16 +90,6 @@ void Zombie::Update(float dt)
 {
 	attackTimer += dt;
 
-	if (attackTimer > attackInterval)
-	{
-
-		if (Utils::CheckCollision(hitBox.rect, target->GetHitBox().rect))
-		{
-			attackTimer = 0.f;
-			target->OnDamage(damage);
-		}
-	}
-
 	UpdateHpBar(); // 좀비 체력바 업데이트
 	Movement(dt);  // 좀비 이동
 	Attack(dt);    // 좀비 공격
