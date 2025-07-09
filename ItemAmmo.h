@@ -2,9 +2,13 @@
 #include "Item.h"
 #include "HitBox.h"
 
+class Player;
+
 class ItemAmmo : public Item
 {
 	sf::Sprite ammoSprite;
+	Player* target;
+
 	HitBox hitBox;
 
 public:

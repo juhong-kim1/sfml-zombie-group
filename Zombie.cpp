@@ -50,6 +50,8 @@ void Zombie::Release()
 
 void Zombie::Reset()
 {
+	target = (Player*)SCENE_MGR.GetCurrentScene()->FindGameObject("Player");
+
 	SetRandomType(); // 랜덤 타입 설정
 
 	SetOrigin(Origins::MC);
@@ -79,6 +81,8 @@ void Zombie::Update(float dt)
 	{
 		Die();
 	}
+
+	hitBox.UpdateTransform(sprite, sprite.getLocalBounds());
 }
 
 void Zombie::Draw(sf::RenderWindow& window)
@@ -91,6 +95,8 @@ void Zombie::Draw(sf::RenderWindow& window)
 		window.draw(hpBarBg);
 		window.draw(hpBar);
 	}
+
+	hitBox.Draw(window);
 }
 
 // 좀비 피격
@@ -153,15 +159,15 @@ void Zombie::SetRandomType()
 // 좀비 이동
 void Zombie::Movement(float dt)
 {
+	 //이동하고자 하는 방향을 바라보게 회전
+	direction = Utils::GetNormal(target->GetPosition() - position);
+	SetRotation(Utils::Angle(direction));
+
 	// 이동
-	if (Utils::Distance(targetPos, position) > 0.5f)
+	if (Utils::Distance(target->GetPosition(), position) > 0.5f)
 	{
 		SetPosition(position + direction * speed * dt);
 	}
-	
-	// 이동하고자 하는 방향을 바라보게 회전
-	direction = Utils::GetNormal(targetPos - position);
-	SetRotation(Utils::Angle(direction));
 }
 
 // HP Bar 업데이트

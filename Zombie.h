@@ -18,7 +18,7 @@ protected:
 	sf::Sprite sprite;
 	std::string texId = "graphics/bloater.png";
 
-	Player* target;
+	Player* target = nullptr;
 
 	sf::Vector2f direction = { 0.0f, 0.0f };
 	

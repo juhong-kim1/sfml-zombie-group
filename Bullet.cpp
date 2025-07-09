@@ -1,7 +1,8 @@
 #include "stdafx.h"
 #include "Bullet.h"
-#include "SceneGame.h"
+#include "SceneDev2.h"
 #include "HitBox.h"
+#include "Zombie.h"
 
 Bullet::Bullet(const std::string& name)
 {
@@ -52,7 +53,7 @@ void Bullet::Release()
 
 void Bullet::Reset()
 {
-	sceneGame = dynamic_cast<SceneGame*>(SCENE_MGR.GetCurrentScene());
+	sceneDev2 = dynamic_cast<SceneDev2*>(SCENE_MGR.GetCurrentScene());
 
 	body.setTexture(TEXTURE_MGR.Get(texId));
 	SetOrigin(Origins::ML);
@@ -82,17 +83,17 @@ void Bullet::Update(float dt)
 	SetPosition(position + direction * speed * dt);
 	hitBox.UpdateTransform(body, GetLocalBounds());
 
-	//const auto& list = sceneGame->GetZombies();
-	//for (const auto zombie : list)
-	//{
-	//	if (Utils::CheckCollision(hitBox.rect, zombie->GetHitBox().rect))
-	//	{
-	//		SetActive(false);
-	//		//zombie->SetActive(false);
-	//		//zombie->OnDamage(damage);
-	//		break;
-	//	}
-	//}
+	const auto& list = sceneDev2->GetZombies();
+	for (const auto zombie : list)
+	{
+		if (Utils::CheckCollision(hitBox.rect, zombie->GetHitBox().rect))
+		{
+			SetActive(false);
+			zombie->SetActive(false);
+			//zombie->OnDamage(damage);
+			break;
+		}
+	}
 
 }
 

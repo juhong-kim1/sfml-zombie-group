@@ -2,7 +2,7 @@
 #include "GameObject.h"
 #include "HitBox.h"
 
-class SceneGame;
+class SceneDev2;
 
 class Bullet :
 	public GameObject
@@ -17,7 +17,7 @@ protected:
 
 	HitBox hitBox;
 
-	SceneGame* sceneGame = nullptr;
+	SceneDev2* sceneDev2 = nullptr;
 
 public:
 	Bullet(const std::string& name = "");
@@ -46,5 +46,6 @@ public:
 	}
 
 	void Fire(const sf::Vector2f& pos, const sf::Vector2f& dir, float s, int d);
+
 
 };

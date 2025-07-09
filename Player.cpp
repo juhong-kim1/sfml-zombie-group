@@ -1,7 +1,8 @@
 #include "stdafx.h"
 #include "Player.h"
-#include "SceneGame.h"
+#include "SceneDev2.h"
 #include "HitBox.h"
+#include "Bullet.h"
 
 Player::Player(const std::string& name)
 	: GameObject(name)
@@ -56,8 +57,6 @@ void Player::Init()
 {
 	sortingLayer = SortingLayers::Foreground;
 	sortingOrder = 0;
-
-	
 }
 
 void Player::Release()
@@ -66,7 +65,14 @@ void Player::Release()
 
 void Player::Reset()
 {
-	sceneGame = (SceneGame*)SCENE_MGR.GetCurrentScene();
+	sceneDev2 = (SceneDev2*)SCENE_MGR.GetCurrentScene();
+
+	for (Bullet* bullet : bulletList)
+	{
+		bullet->SetActive(false);
+		bulletPool.push_back(bullet);
+	}
+	bulletList.clear();
 
 	player.setTexture(TEXTURE_MGR.Get(texId), true);
 	SetOrigin(Origins::MC);
@@ -76,10 +82,27 @@ void Player::Reset()
 	direction = { 0.f, 0.f };
 	look = { 1.f, 1.f };
 
+	/*shootInterval = 0.2f;
+	shootTimer = 0.f;*/
+
 }
 
 void Player::Update(float dt)
 {
+	auto it = bulletList.begin();
+	while (it != bulletList.end())
+	{
+		if (!(*it)->GetActive())
+		{
+			bulletPool.push_back(*it);
+			it = bulletList.erase(it);
+		}
+		else
+		{
+			++it;
+		}
+	}
+
 	direction.x = InputMgr::GetAxis(Axis::Horizontal);
 	direction.y = InputMgr::GetAxis(Axis::Vertical);
 
@@ -95,18 +118,48 @@ void Player::Update(float dt)
 		SetPosition(nextPos);
 	}
 
-
 	sf::Vector2i mousePos = InputMgr::GetMousePosition();
-	sf::Vector2f mouseWorldPos = sceneGame->ScreenToWorld(mousePos);
+	sf::Vector2f mouseWorldPos = sceneDev2->ScreenToWorld(mousePos);
 	look = Utils::GetNormal(mouseWorldPos - GetPosition());
 	SetRotation(Utils::Angle(look));
 
 	hitBox.UpdateTransform(player, player.getLocalBounds());
 
+	if (InputMgr::GetMouseButton(sf::Mouse::Left))
+	{
+		shootTimer += dt;
+		if (shootInterval >= shootTimer)
+		{
+			Shoot();
+			shootTimer = 0;
+		}
+	}
 }
 
 void Player::Draw(sf::RenderWindow& window)
 {
 	window.draw(player);
 	hitBox.Draw(window);
+}
+
+void Player::Shoot()
+{
+	Bullet* bullet = nullptr;
+	if (bulletPool.empty())
+	{
+		bullet = new Bullet();
+		bullet->Init();
+	}
+	else
+	{
+		bullet = bulletPool.front();
+		bulletPool.pop_front();
+		bullet->SetActive(true);
+	}
+
+	bullet->Reset();
+	bullet->Fire(position + look * 10.f, look, 1000.f, 10);
+
+	bulletList.push_back(bullet);
+	sceneDev2->AddGameObject(bullet);
 }

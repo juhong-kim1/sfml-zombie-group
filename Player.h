@@ -2,8 +2,9 @@
 #include "GameObject.h"
 #include "HitBox.h"
 
-class SceneGame;
+class SceneDev2;
 class HitBox;
+class Bullet;
 
 class Player : public GameObject
 {
@@ -11,12 +12,20 @@ protected:
 	sf::Sprite player;
 	std::string texId = "graphics/player.png";
 
+	std::list<Bullet*> bulletList;
+	std::list<Bullet*> bulletPool;
+
 	sf::Vector2f look;
 	sf::Vector2f direction;
 	float speed = 500.f;
 
-	SceneGame* sceneGame = nullptr;
+	SceneDev2* sceneDev2 = nullptr;
 	HitBox hitBox;
+
+	int shootInterval = 0.5f;
+	int shootTimer = 0.f;
+	
+
 public:
 	Player(const std::string& name = "");
 	virtual ~Player() = default;
@@ -39,4 +48,6 @@ public:
 	{
 		return hitBox;
 	}
+
+	void Shoot();
 };

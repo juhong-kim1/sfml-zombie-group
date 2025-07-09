@@ -2,10 +2,13 @@
 #include "Item.h"
 #include "HitBox.h"
 
+class Player;
+
 class ItemHealthPack : public Item
 {
 protected:
 	sf::Sprite healthPackSprite;
+	Player* target;
 	HitBox hitBox;
 
 public:

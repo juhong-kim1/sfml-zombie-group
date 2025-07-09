@@ -1,6 +1,6 @@
 #include "stdafx.h"
 #include "ItemAmmo.h"
-
+#include "Player.h"
 
 ItemAmmo::ItemAmmo(const std::string& name)
 	:Item(name)
@@ -54,20 +54,25 @@ void ItemAmmo::Release()
 
 void ItemAmmo::Reset()
 {
+	target = (Player*)SCENE_MGR.GetCurrentScene()->FindGameObject("Player");
+
 	ammoSprite.setTexture(TEXTURE_MGR.Get(texId));
 }
 
 void ItemAmmo::Update(float dt)
 {
-	//if (Utils::CheckCollision(hitBox.rect, player->GetHitBox().rect))
-	//{
-	//	Use();
-	//}
+	if (Utils::CheckCollision(hitBox.rect, target->GetHitBox().rect))
+	{
+		Use();
+	}
+
+	hitBox.UpdateTransform(ammoSprite, ammoSprite.getLocalBounds());
 }
 
 void ItemAmmo::Draw(sf::RenderWindow& window)
 {
 	window.draw(ammoSprite);
+	hitBox.Draw(window);
 }
 
 void ItemAmmo::Use()

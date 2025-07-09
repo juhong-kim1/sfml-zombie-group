@@ -20,7 +20,7 @@ void SceneMgr::Init()
 	scenes.push_back(new SceneGame3());
 	scenes.push_back(new SceneGame4());
 	scenes.push_back(new SceneGame5());
-	scenes.push_back(new SceneGame6());
+	scenes.push_back(new SceneDev2());
 	scenes.push_back(new SceneSelect());
 
 	for (auto scene : scenes)

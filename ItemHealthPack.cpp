@@ -1,5 +1,6 @@
 #include "stdafx.h"
 #include "ItemHealthPack.h"
+#include "Player.h"
 
 
 ItemHealthPack::ItemHealthPack(const std::string& name)
@@ -55,26 +56,31 @@ void ItemHealthPack::Release()
 
 void ItemHealthPack::Reset()
 {
+	target = (Player*)SCENE_MGR.GetCurrentScene()->FindGameObject("Player");
+
 	healthPackSprite.setTexture(TEXTURE_MGR.Get(texId));
 }
 
 void ItemHealthPack::Update(float dt)
 {
-	//if (Utils::CheckCollision(hitBox.rect, player->GetHitBox().rect))
-	//{
-	//	Use();
-	//}
+	if (Utils::CheckCollision(hitBox.rect, target->GetHitBox().rect))
+	{
+		Use();
+	}
+
+	hitBox.UpdateTransform(healthPackSprite, healthPackSprite.getLocalBounds());
 }
 
 void ItemHealthPack::Draw(sf::RenderWindow& window)
 {
 	window.draw(healthPackSprite);
+	hitBox.Draw(window);
 }
 
 void ItemHealthPack::Use()
 {
 	// 체력 회복
-	// playerHp += 10;
+	 //playerHp += 10;
 	std::cout << "체력 회복" << std::endl;
 
 	// 사용 후 비활성화

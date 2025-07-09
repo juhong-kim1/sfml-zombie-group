@@ -4,6 +4,7 @@
 #include "Item.h"
 #include "ItemHealthPack.h"
 #include "ItemAmmo.h"
+#include "Player.h"
 
 SceneDev2::SceneDev2() : Scene(SceneIds::Game6)
 {
@@ -16,9 +17,13 @@ void SceneDev2::Init()
 	texIds.push_back("graphics/crawler.png");
 	texIds.push_back("graphics/health_pickup.png");
 	texIds.push_back("graphics/ammo_pickup.png");
+	texIds.push_back("graphics/player.png");
+	texIds.push_back("graphics/bullet.png");
 
 	fontIds.push_back("fonts/DS-DIGIT.ttf");
 
+
+	player = (Player*)AddGameObject(new Player("Player"));
 	// �ʱ� ���� ����
 	for (int i = 0; i < 100; ++i)
 	{
@@ -59,6 +64,11 @@ void SceneDev2::Update(float dt)
 {
 	Scene::Update(dt);
 
+	if (player != nullptr)
+	{
+		worldView.setCenter(player->GetPosition());
+	}
+
 	auto it = zombieList.begin();
 	while (it != zombieList.end())
 	{
@@ -82,6 +92,8 @@ void SceneDev2::Update(float dt)
 
 void SceneDev2::Draw(sf::RenderWindow& window)
 {
+	window.setView(worldView);
+
 	Scene::Draw(window);
 
 	window.setView(uiView);
