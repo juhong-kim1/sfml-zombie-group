@@ -5,6 +5,7 @@
 #include "SceneGame1.h"
 #include "SceneGame2.h"
 #include "SceneGame3.h"
+#include "GameData.h"
 
 Zombie::Zombie(const std::string& name)
 	: GameObject(name)
@@ -59,7 +60,7 @@ void Zombie::Reset()
 	target = (Player*)SCENE_MGR.GetCurrentScene()->FindGameObject("Player");
 	SoundMgr::Instance().Load("splat", "Sound/splat.wav");
 
-	SetRandomType(); // ·£´ý Å¸ÀÔ ¼³Á¤
+	SetRandomType(); // ï¿½ï¿½ï¿½ï¿½ Å¸ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
 
 	isAlive = true;
 	hitBoxActive = true;
@@ -90,9 +91,9 @@ void Zombie::Update(float dt)
 {
 	attackTimer += dt;
 
-	UpdateHpBar(); // Á»ºñ Ã¼·Â¹Ù ¾÷µ¥ÀÌÆ®
-	Movement(dt);  // Á»ºñ ÀÌµ¿
-	Attack(dt);    // Á»ºñ °ø°Ý
+	UpdateHpBar(); // ï¿½ï¿½ï¿½ï¿½ Ã¼ï¿½Â¹ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Æ®
+	Movement(dt);  // ï¿½ï¿½ï¿½ï¿½ ï¿½Ìµï¿½
+	Attack(dt);    // ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
 
 	if (health <= 0)
 	{
@@ -113,7 +114,7 @@ void Zombie::Draw(sf::RenderWindow& window)
 {
 	window.draw(sprite);
 
-	// ÃÖÃÊ µ¥¹ÌÁö¸¦ ÀÔÀº ÈÄ Ã¼·Â¹Ù°¡ ³ªÅ¸³ªµµ·Ï ÇÔ
+	// ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ Ã¼ï¿½Â¹Ù°ï¿½ ï¿½ï¿½Å¸ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½
 	if (health != maxHealth && isAlive)
 	{
 		window.draw(hpBarBg);
@@ -123,7 +124,8 @@ void Zombie::Draw(sf::RenderWindow& window)
 	hitBox.Draw(window);
 }
 
-// Á»ºñ ÇÇ°Ý
+
+// ï¿½ï¿½ï¿½ï¿½ ï¿½Ç°ï¿½
 void Zombie::OnDamage(int damage)
 {
 	if (health <= 0)
@@ -136,7 +138,7 @@ void Zombie::OnDamage(int damage)
 	SoundMgr::Instance().Play("splat");
 }
 
-// Á»ºñ °ø°Ý
+// ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
 void Zombie::Attack(float dt)
 {
 	attackTimer += dt;
@@ -150,12 +152,12 @@ void Zombie::Attack(float dt)
 	{
 		attackTimer = 0;
 		target->OnDamage(damage);
-		std::cout << "°ø°Ý" << std::endl;
+		std::cout << "ï¿½ï¿½ï¿½ï¿½" << std::endl;
 	}
 }
 
 
-// Á»ºñ Å¸ÀÔ ¼³Á¤
+// ï¿½ï¿½ï¿½ï¿½ Å¸ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
 void Zombie::SetRandomType()
 {
 	int random = Utils::RandomRange(0, (int)Type::count);
@@ -187,16 +189,16 @@ void Zombie::SetRandomType()
 	health = maxHealth;
 }
 
-// Á»ºñ ÀÌµ¿
+// ï¿½ï¿½ï¿½ï¿½ ï¿½Ìµï¿½
 void Zombie::Movement(float dt)
 {
 	if (isAlive)
 	{
-		//ÀÌµ¿ÇÏ°íÀÚ ÇÏ´Â ¹æÇâÀ» ¹Ù¶óº¸°Ô È¸Àü
+		//ï¿½Ìµï¿½ï¿½Ï°ï¿½ï¿½ï¿½ ï¿½Ï´ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½Ù¶óº¸°ï¿½ È¸ï¿½ï¿½
 		direction = Utils::GetNormal(target->GetPosition() - position);
 		SetRotation(Utils::Angle(direction));
 
-		// ÀÌµ¿
+		// ï¿½Ìµï¿½
 		if (Utils::Distance(target->GetPosition(), position) > 0.5f)
 		{
 			sf::Vector2f nextPos = position + direction * speed * dt;
@@ -218,21 +220,21 @@ void Zombie::Movement(float dt)
 				tileMap = sceneGame3->GetTileMap();
 			}
 
-			// º®ÀÌ ¾Æ´Ñ °÷À¸·Î¸¸ ÀÌµ¿
+			// ï¿½ï¿½ï¿½ï¿½ ï¿½Æ´ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½Î¸ï¿½ ï¿½Ìµï¿½
 			if (tileMap && !tileMap->IsWallAt(nextPos))
 			{
 				SetPosition(nextPos);
 			}
 			else
 			{
-				// º®¿¡ ¸·ÇûÀ» ¶§ ´Ù¸¥ ¹æÇâ ½Ãµµ (¿É¼Ç)
-				// XÃà¸¸ ÀÌµ¿ ½Ãµµ
+				// ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ ï¿½Ù¸ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½Ãµï¿½ (ï¿½É¼ï¿½)
+				// Xï¿½à¸¸ ï¿½Ìµï¿½ ï¿½Ãµï¿½
 				sf::Vector2f altPos1 = sf::Vector2f(nextPos.x, position.y);
 				if (tileMap && !tileMap->IsWallAt(altPos1))
 				{
 					SetPosition(altPos1);
 				}
-				// YÃà¸¸ ÀÌµ¿ ½Ãµµ
+				// Yï¿½à¸¸ ï¿½Ìµï¿½ ï¿½Ãµï¿½
 				else
 				{
 					sf::Vector2f altPos2 = sf::Vector2f(position.x, nextPos.y);
@@ -241,14 +243,14 @@ void Zombie::Movement(float dt)
 						SetPosition(altPos2);
 					}
 				}
-				// µÑ ´Ù ¸·ÇûÀ¸¸é ÀÌµ¿ÇÏÁö ¾ÊÀ½
+				// ï¿½ï¿½ ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½Ìµï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
 			}
 		}
 	
 	}
 }
 
-// HP Bar ¾÷µ¥ÀÌÆ®
+// HP Bar ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Æ®
 void Zombie::UpdateHpBar()
 {
 	hpBarBg.setPosition(hpBar.getPosition());
@@ -258,18 +260,33 @@ void Zombie::UpdateHpBar()
 	hpBar.setSize({ fill, 5 });
 }
 
-// »ç¸Á Ã³¸®
+// ï¿½ï¿½ï¿½ Ã³ï¿½ï¿½
 void Zombie::Die()
 {
-	if (!isAlive)
-	{
-		return;
-	}
-
+	if (!isAlive) return;
+	SceneGame1* gameScene = dynamic_cast<SceneGame1*>(parentScene);
+	
+	// ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½Æ®
 	isAlive = false;
 	sprite.setTexture(TEXTURE_MGR.Get(bloodTexId), true);
 	SetRotation(0.f);
 	sortingLayer = SortingLayers::Background;
 	sortingOrder = 1;
 	hitBoxActive = false;
+
+	if (parentScene != nullptr)
+	{
+		SceneGame1* gameScene = dynamic_cast<SceneGame1*>(parentScene);
+		if (gameScene != nullptr)
+		{
+			gameScene->AddScore(100); // 100ï¿½ï¿½ ï¿½ß°ï¿½
+		}
+	}
 }
+
+void Zombie::SetParentScene(Scene* scene)
+{
+	parentScene = scene;
+}
+
+

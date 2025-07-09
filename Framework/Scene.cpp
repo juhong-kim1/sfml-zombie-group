@@ -8,6 +8,8 @@ Scene::Scene(SceneIds id)
 
 void Scene::Init()
 {
+	
+
 	for (auto obj : gameObjects)
 	{
 		obj->Init();
@@ -33,7 +35,6 @@ void Scene::Release()
 
 void Scene::Enter()
 {
-
 	TEXTURE_MGR.Load(texIds);
 	FONT_MGR.Load(fontIds);
 	SOUNDBUFFER_MGR.Load(soundIds);
@@ -81,6 +82,7 @@ void Scene::Update(float dt)
 
 void Scene::Draw(sf::RenderWindow& window)
 {
+
 	std::list<GameObject*> sortedObjects(gameObjects);
 	sortedObjects.sort(DrawOrderComparer());
 

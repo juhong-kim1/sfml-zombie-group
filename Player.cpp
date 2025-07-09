@@ -13,6 +13,11 @@ Player::Player(const std::string& name)
 {
 }
 
+int Player::GetReserveAmmo() const
+{
+	return reserveAmmo;
+}
+
 bool Player::CheckBorder(const sf::Vector2f pos)
 {
 	sf::FloatRect localBounds = player.getLocalBounds();

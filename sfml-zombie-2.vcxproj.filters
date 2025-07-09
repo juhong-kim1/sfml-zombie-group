@@ -31,7 +31,9 @@
     <ClCompile Include="SceneGame6.cpp" />
     <ClCompile Include="effect.cpp" />
     <ClCompile Include="DataStruct.cpp" />
+    <ClCompile Include="SoundMgr.cpp" />
     <ClCompile Include="SceneDev2.cpp" />
+    <ClCompile Include="GameData.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Bullet.h" />
@@ -66,7 +68,9 @@
     <ClInclude Include="SceneGame6.h" />
     <ClInclude Include="effect.h" />
     <ClInclude Include="DataStruct.h" />
+    <ClInclude Include="SoundMgr.h" />
     <ClInclude Include="SceneDev2.h" />
+    <ClInclude Include="GameData.h" />
   </ItemGroup>
   <ItemGroup>
     <None Include=".gitignore" />

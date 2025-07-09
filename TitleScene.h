@@ -11,7 +11,7 @@ protected:
 	sf::Sprite spritetitle;
 	sf::Sprite spriteMode;
 	TextGo* screen;
-	TextGo* score;
+	TextGo* hiScoreText;
 	TextGo* HiScore;
 	TextGo* clickStart;
 

@@ -31,10 +31,7 @@ public:
 	{
 		return &res == &Empty;
 	}
-	/*bool ResourceMgr<sf::Texture>::IsEmpty(const sf::Texture& tex) const
-	{
-		return &tex == &Empty;
-	}*/
+	
 
 	bool Load(const std::string& id)
 	{
@@ -48,10 +45,11 @@ public:
 		bool success = res->loadFromFile(id);
 		if (!success)
 		{
+			std::cerr << "Failed to load: " << id << std::endl;
 			delete res;
 			return false;
 		}
-
+		std::cout << "Loaded: " << id << std::endl;
 		resources.insert({id, res});
 		return true;
 	}

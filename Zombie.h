@@ -3,6 +3,7 @@
 #include "HitBox.h"
 
 class Player;
+class Scene;
 
 enum class Type
 {
@@ -18,7 +19,7 @@ protected:
 	sf::Sprite sprite;
 	std::string texId = "graphics/bloater.png";
 	std::string bloodTexId = "graphics/blood.png";
-
+	Scene* parentScene = nullptr;
 	Player* target = nullptr;
 
 	sf::Vector2f direction = { 0.0f, 0.0f };
@@ -30,7 +31,7 @@ protected:
 	bool isActive = false;
 	bool isAlive = true;
 
-	float per = 0.f; // º¯¼ö ¸í º¯°æÇÏ±â..
+	float per = 0.f; // ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½Ï±ï¿½..
 
 	int health = 0;
 	int maxHealth = 0;
@@ -43,10 +44,10 @@ protected:
 
 	bool hitBoxActive = true;
 
-	sf::Vector2f targetPos = { 100.f, 100.f }; // ÇÃ·¹ÀÌ¾î·Î º¯°æÇÏ±â
+	sf::Vector2f targetPos = { 100.f, 100.f }; // ï¿½Ã·ï¿½ï¿½Ì¾ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½Ï±ï¿½
 	
 	HitBox hitBox;
-	// »ý¼ºµÉ ¶§ ·£´ý Á¾·ù Àû¿ë
+	// ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
 
 
 public:
@@ -82,6 +83,7 @@ public:
 	void Movement(float dt);
 	void UpdateHpBar();
 	void Die();
+	void SetParentScene(Scene* scene);
 	bool GetAlive() const { return isAlive; }
 
 	const HitBox& GetHitBox() const
