@@ -18,7 +18,7 @@ void ModeScene::Init()
 {
 	texIds.push_back("graphics/background.png");
 	fontIds.push_back("fonts/zombiecontrol.ttf");
-	
+	SoundMgr::Instance().Load("powerup", "sound/powerup.wav");
 }
 void ModeScene::Enter()
 {
@@ -30,7 +30,7 @@ void ModeScene::Enter()
 	const sf::Texture* bgTex = bg->GetSprite().getTexture();
 	if (!bgTex)
 	{
-		std::cerr << "¹è°æ ÅØ½ºÃ³°¡ ¼³Á¤µÇÁö ¾Ê¾Ò½À´Ï´Ù!" << std::endl;
+		std::cerr << "ï¿½ï¿½ï¿½ ï¿½Ø½ï¿½Ã³ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½Ê¾Ò½ï¿½ï¿½Ï´ï¿½!" << std::endl;
 		
 	}
 	bg->SetOrigin(Origins::TL);
@@ -112,48 +112,49 @@ void ModeScene::OnOptionClicked(size_t index)
 	switch (index)
 	{
 	case 0:
-		std::cout << "¹ß»ç¼Óµµ Áõ°¡ ¸ðµå ¼±ÅÃµÊ\n";
+		std::cout << "ï¿½ß»ï¿½Óµï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½Ãµï¿½\n";
 		std::cout << DataStruct::GetRateOfFire();
 		DataStruct::IncreaseRateOfFire(0.1f);
-		std::cout << " ¡æ " << DataStruct::GetRateOfFire() << std::endl;
+		std::cout << " ï¿½ï¿½ " << DataStruct::GetRateOfFire() << std::endl;
 		break;
 	case 1:
-		std::cout << "ÅºÃ¢ Å©±â Áõ°¡ ¸ðµå ¼±ÅÃµÊ\n";
+		std::cout << "ÅºÃ¢ Å©ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½Ãµï¿½\n";
 		DataStruct::IncreaseClipSize(6);
 		break;
 	case 2:
-		std::cout << "Ã¼·Â Áõ°¡ ¸ðµå ¼±ÅÃµÊ\n";
+		std::cout << "Ã¼ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½Ãµï¿½\n";
 		DataStruct::IncreaseMaxHealth(10);
 		break;
 	case 3:
-		std::cout << "´Þ¸®±â ¼Óµµ Áõ°¡ ¸ðµå ¼±ÅÃµÊ\n";
+		std::cout << "ï¿½Þ¸ï¿½ï¿½ï¿½ ï¿½Óµï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½Ãµï¿½\n";
 		DataStruct::IncreaseRunSpeed(10);
 		break;
 	case 4:
-		std::cout << "Ã¼·Â ¾ÆÀÌÅÛ Áõ°¡ ¸ðµå ¼±ÅÃµÊ\n";
+		std::cout << "Ã¼ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½Ãµï¿½\n";
 		DataStruct::IncreaseHealAmount(10);
 		break;
 	case 5:
-		std::cout << "Åº¾à ¾ÆÀÌÅÛ Áõ°¡ ¸ðµå ¼±ÅÃµÊ\n";
+		std::cout << "Åºï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½Ãµï¿½\n";
 		DataStruct::IncreaseAmmoAmount(6);
 		break;
 	default:
 		break;
 	}
+	SoundMgr::Instance().Play("powerup");
 	SCENE_MGR.ChangeScene(SceneIds::Game1);
 }
 void ModeScene::Exit() 
 {
 	Scene::Exit();
 
-	// ¸ðµç °ÔÀÓ ¿ÀºêÁ§Æ® Á¦°Å
+	// ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Æ® ï¿½ï¿½ï¿½ï¿½
 	for (auto go : gameObjects)
 	{
 		delete go;
 	}
 	gameObjects.clear();
 
-	// ¼±ÅÃ Ç×¸ñµµ ÃÊ±âÈ­
+	// ï¿½ï¿½ï¿½ï¿½ ï¿½×¸ï¿½ ï¿½Ê±ï¿½È­
 	modeOptions.clear();
 
 	}

@@ -55,6 +55,7 @@ void Zombie::Release()
 void Zombie::Reset()
 {
 	target = (Player*)SCENE_MGR.GetCurrentScene()->FindGameObject("Player");
+	SoundMgr::Instance().Load("splat", "Sound/splat.wav");
 
 	SetRandomType(); // 랜덤 타입 설정
 	hitBoxActive = true;
@@ -95,7 +96,7 @@ void Zombie::Update(float dt)
 
 	UpdateHpBar(); // 좀비 체력바 업데이트
 	Movement(dt);  // 좀비 이동
-	//Attack(dt);    // 공격
+	Attack(dt);    // 공격
 
 	if (health <= 0)
 	{
@@ -136,6 +137,7 @@ void Zombie::OnDamage(int damage)
 	}
 
 	health -= damage;
+	SoundMgr::Instance().Play("splat");
 }
 
 // 좀비 공격

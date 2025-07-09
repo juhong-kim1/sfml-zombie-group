@@ -97,6 +97,11 @@ void Player::Reset()
 	shootTimer = 0.f;
 	hp = maxHp;
 	attackTimer = 0.f;
+
+	// 효과음
+	SoundMgr::Instance().Load("shoot", "sound/shoot.wav");
+	SoundMgr::Instance().Load("hit", "sound/hit.wav");
+	SoundMgr::Instance().Load("reload", "sound/reload.wav");
 }
 
 void Player::Update(float dt)
@@ -214,6 +219,7 @@ void Player::Shoot()
 
 		bullet->Reset();
 		bullet->Fire(position + look * 10.f, look, 1000.f, 10);
+		SoundMgr::Instance().Play("shoot");
 		ammoInClip -= 1;
 		std::cout << ammoInClip << " / " << reserveAmmo << std::endl;
 
@@ -256,6 +262,8 @@ void Player::OnDamage(int damage)
 	}
 
 	hp = Utils::Clamp(hp - damage, 0, maxHp);
+	SoundMgr::Instance().Play("hit");
+
 	if (hp == 0)
 	{
 		SCENE_MGR.ChangeScene(SceneIds::Mode);
@@ -288,5 +296,6 @@ void Player::Reload()
 		reserveAmmo -= reloadAmount;
 	}
 
+	SoundMgr::Instance().Play("reload");
 	std::cout << "reload : " << ammoInClip << " / " << reserveAmmo << std::endl;
 }
