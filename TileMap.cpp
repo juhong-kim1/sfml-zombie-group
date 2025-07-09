@@ -135,10 +135,20 @@ bool TileMap::IsWallAt(const sf::Vector2f& worldPos)
 void TileMap::Init()
 {
 	sortingLayer = SortingLayers::Background;
-	SceneId = SceneIds::Game1;
 	SceneOrder = 0;
 
 	Set({ 50, 50 }, { 50.f, 50.f });
+}
+
+void TileMap::SetMapSize(int width, int height, float cellWidth, float cellHeight)
+{
+	Set({ width, height }, { cellWidth, cellHeight });
+}
+
+// 오버로드: 셀 크기 기본값 50x50
+void TileMap::SetMapSize(int width, int height)
+{
+	SetMapSize(width, height, 50.f, 50.f);
 }
 
 void TileMap::Release()

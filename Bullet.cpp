@@ -3,6 +3,9 @@
 #include "SceneDev2.h"
 #include "HitBox.h"
 #include "Zombie.h"
+#include "SceneGame1.h"
+#include "SceneGame2.h"
+#include "SceneGame3.h"
 
 Bullet::Bullet(const std::string& name)
 {
@@ -53,7 +56,10 @@ void Bullet::Release()
 
 void Bullet::Reset()
 {
-	sceneDev2 = dynamic_cast<SceneDev2*>(SCENE_MGR.GetCurrentScene());
+	Scene* currentScene = SCENE_MGR.GetCurrentScene();
+	sceneGame1 = dynamic_cast<SceneGame1*>(currentScene);
+	sceneGame2 = dynamic_cast<SceneGame2*>(currentScene);
+	sceneGame3 = dynamic_cast<SceneGame3*>(currentScene);
 
 	body.setTexture(TEXTURE_MGR.Get(texId));
 	SetOrigin(Origins::ML);
@@ -82,15 +88,43 @@ void Bullet::Update(float dt)
 	SetPosition(position + direction * speed * dt);
 	hitBox.UpdateTransform(body, GetLocalBounds());
 
-	const auto& list = sceneDev2->GetZombies();
-
-	for (const auto zombie : list)
+	if (sceneGame1)
 	{
-		if (Utils::CheckCollision(hitBox.rect, zombie->GetHitBox().rect))
+		const auto& zombieList = sceneGame1->GetZombies();
+		for (const auto zombie : zombieList)
 		{
-			SetActive(false);
-			zombie->OnDamage(50);
-			break;
+			if (Utils::CheckCollision(hitBox.rect, zombie->GetHitBox().rect))
+			{
+				SetActive(false);
+				zombie->OnDamage(50);
+				return; // 충돌 후 즉시 종료
+			}
+		}
+	}
+	else if (sceneGame2)
+	{
+		const auto& zombieList = sceneGame2->GetZombies();
+		for (const auto zombie : zombieList)
+		{
+			if (Utils::CheckCollision(hitBox.rect, zombie->GetHitBox().rect))
+			{
+				SetActive(false);
+				zombie->OnDamage(50);
+				return;
+			}
+		}
+	}
+	else if (sceneGame3)
+	{
+		const auto& zombieList = sceneGame3->GetZombies();
+		for (const auto zombie : zombieList)
+		{
+			if (Utils::CheckCollision(hitBox.rect, zombie->GetHitBox().rect))
+			{
+				SetActive(false);
+				zombie->OnDamage(50);
+				return;
+			}
 		}
 	}
 
