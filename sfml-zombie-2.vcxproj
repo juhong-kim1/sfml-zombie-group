@@ -109,10 +109,9 @@
     <ClCompile Include="ItemHealthPack.cpp" />
     <ClCompile Include="main.cpp" />
     <ClCompile Include="Player.cpp" />
-    <ClCompile Include="SceneDev2.cpp" />
     <ClCompile Include="Framework\SceneMgr.cpp" />
+    <ClCompile Include="SceneDev2.cpp" />
     <ClCompile Include="SceneGame.cpp" />
-    <ClCompile Include="Game1.cpp" />
     <ClCompile Include="ModeScene.cpp" />
     <ClCompile Include="SceneGame1.cpp" />
     <ClCompile Include="SceneGame2.cpp" />
@@ -148,8 +147,8 @@
     <ClInclude Include="ItemAmmo.h" />
     <ClInclude Include="ItemHealthPack.h" />
     <ClInclude Include="Player.h" />
-    <ClInclude Include="SceneDev2.h" />
     <ClInclude Include="Framework\SceneMgr.h" />
+    <ClInclude Include="SceneDev2.h" />
     <ClInclude Include="SceneGame.h" />
     <ClInclude Include="SceneGame1.h" />
     <ClInclude Include="SceneGame2.h" />
@@ -163,7 +162,6 @@
     <ClInclude Include="Framework\Utils.h" />
     <ClInclude Include="Variables.h" />
     <ClInclude Include="Zombie.h" />
-    <ClInclude Include="Game1.h" />
     <ClInclude Include="ModeScene.h" />
     <ClInclude Include="TileMap.h" />
     <ClInclude Include="TitleScene.h" />

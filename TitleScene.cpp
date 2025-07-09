@@ -5,7 +5,7 @@
 
 void TitleScene::screenchange(const std::string& msg)
 {
-	if (screenselect == nullptr) // Check if modetitle is initialized
+	if (screen == nullptr) // Check if modetitle is initialized
 	{
 		std::cerr << "Error: modetitle is not initialized!" << std::endl;
 		return;
@@ -41,17 +41,25 @@ void TitleScene::Enter()
 	sf::Vector2u texSize = bgTex->getSize();
 	bg->SetScale({ winSize.x / texSize.x, winSize.y / texSize.y });
 
-	screenselect = (TextGo*)AddGameObject(new TextGo("fonts/zombiecontrol.ttf"));
-	screenselect->SetString("Zombie Game");
-	screenselect->SetCharacterSize(90);
-	screenselect->SetFillColor(sf::Color::White);
-	screenselect->SetPosition({ 320.0f, 350.f });
+	screen = (TextGo*)AddGameObject(new TextGo("fonts/zombiecontrol.ttf"));
+	screen->SetString("Zombie Game");
+	screen->SetCharacterSize(90);
+	screen->SetFillColor(sf::Color::White);
+	screen->SetPosition({ 320.0f, 350.f });
+
+	score = (TextGo*)AddGameObject(new TextGo("fonts/zombiecontrol.ttf"));
+	score->SetString("HI SCORE: ");
+	score->SetCharacterSize(50);
+	score->SetFillColor(sf::Color::White);
+	score->SetPosition({ 1350.0f, 30.f });
 
 	clickStart = (TextGo*)AddGameObject(new TextGo("fonts/zombiecontrol.ttf"));
 	clickStart->SetString("Click to start");
 	clickStart->SetCharacterSize(50);
 	clickStart->SetFillColor(sf::Color::White);
 	clickStart->SetPosition({ 800.0f, 850.f });
+
+
 
 	const sf::Font& font =FONT_MGR.Get("fonts/zombiecontrol.ttf");
 	if (FONT_MGR.IsEmpty(font))
@@ -60,8 +68,9 @@ void TitleScene::Enter()
 	}
 	else
 	{
-		screenselect->GetText().setFont(font); 
+		screen->GetText().setFont(font); 
 		clickStart->GetText().setFont(font);
+		score->GetText().setFont(font);
 	}
 }
 

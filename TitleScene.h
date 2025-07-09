@@ -10,7 +10,9 @@ protected:
 	int SelectedIndex = 0;
 	sf::Sprite spritetitle;
 	sf::Sprite spriteMode;
-	TextGo* screenselect;
+	TextGo* screen;
+	TextGo* score;
+	TextGo* HiScore;
 	TextGo* clickStart;
 
 	Gametitle changeScene = Gametitle::mode;
