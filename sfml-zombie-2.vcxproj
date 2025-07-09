@@ -96,6 +96,7 @@
   <!-- 다른 ConfigurationGroup 생략 (위와 동일한 구조) -->
   <ItemGroup>
     <ClCompile Include="Bullet.cpp" />
+    <ClCompile Include="DataStruct.cpp" />
     <ClCompile Include="Framework\Framework.cpp" />
     <ClCompile Include="Framework\GameObject.cpp" />
     <ClCompile Include="Framework\InputMgr.cpp" />
@@ -131,6 +132,7 @@
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Bullet.h" />
+    <ClInclude Include="DataStruct.h" />
     <ClInclude Include="Framework\Framework.h" />
     <ClInclude Include="Framework\Defines.h" />
     <ClInclude Include="Framework\GameObject.h" />

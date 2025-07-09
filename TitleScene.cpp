@@ -24,7 +24,6 @@ void TitleScene::Init()
 void TitleScene::Enter()
 {
 	Scene::Enter();
-
 	SpriteGo* bg = new SpriteGo("graphics/background.png", "Background");
 	AddGameObject(bg);
 	bg->Init();

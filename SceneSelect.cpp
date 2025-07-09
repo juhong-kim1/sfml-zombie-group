@@ -1,8 +1,59 @@
 #include "stdafx.h"
 #include "SceneSelect.h"
+#include "DataStruct.h"
 
 SceneSelect::SceneSelect()
 	:Scene(SceneIds::Select)
 {
+}
 
+void SceneSelect::Init()
+{
+	Scene::Init();
+}
+
+void SceneSelect::Enter()
+{
+	Scene::Enter();
+}
+
+void SceneSelect::Exit()
+{
+	Scene::Exit();
+}
+
+void SceneSelect::Update(float dt)
+{
+	if (InputMgr::GetKeyDown(sf::Keyboard::Num1))
+	{
+		std::cout << "Increased rate of Fire" << std::endl;
+		DataStruct::rateOfFire -= 0.1f;
+	}
+	else if (InputMgr::GetKeyDown(sf::Keyboard::Num2))
+	{
+		std::cout << "increased clip sizecenxt reload" << std::endl;
+	}
+	else if (InputMgr::GetKeyDown(sf::Keyboard::Num3))
+	{
+		std::cout << "increased max health" << std::endl;
+	}
+	else if (InputMgr::GetKeyDown(sf::Keyboard::Num4))
+	{
+		std::cout << "increased run speed" << std::endl;
+	}
+	else if (InputMgr::GetKeyDown(sf::Keyboard::Num5))
+	{
+		std::cout << "more and better health pickups" << std::endl;
+	}
+	else if (InputMgr::GetKeyDown(sf::Keyboard::Num6))
+	{
+		std::cout << "more and better ammo pickups" << std::endl;
+	}
+
+	Scene::Update(dt);
+}
+
+void SceneSelect::Draw(sf::RenderWindow& window)
+{
+	Scene::Draw(window);
 }
