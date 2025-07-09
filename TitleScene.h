@@ -15,7 +15,6 @@ protected:
 
 	Gametitle changeScene = Gametitle::mode;
 
-
 public:
 	TitleScene() : Scene(SceneIds::Title) {}
 	~TitleScene() override = default;
@@ -25,6 +24,4 @@ public:
 	void Enter() override;
 	void Update(float dt) override;
 	void Draw(sf::RenderWindow& window);
-	
 };
-

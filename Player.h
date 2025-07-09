@@ -29,6 +29,8 @@ protected:
 	int hp = 0;
 	int maxHp = 100;
 	
+	float maxHealth = 0.0f;
+	float health = 0.0f;
 
 public:
 	Player(const std::string& name = "");
@@ -54,6 +56,8 @@ public:
 	void Effect4();
 	void Effect5();
 	void Effect6();
+
+	void SetStats();
 
 	const HitBox& GetHitBox() const
 	{

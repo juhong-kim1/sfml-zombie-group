@@ -37,7 +37,6 @@ enum SceneIds
 	Game4,
 	Game5,
 	Game6,
-	Select,
 	Count,
 };
 

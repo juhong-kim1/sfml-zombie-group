@@ -9,7 +9,6 @@
 #include"SceneGame4.h"
 #include"SceneGame5.h"
 #include"SceneGame6.h"
-#include"SceneSelect.h"
 #include "effect.h"
 
 void SceneMgr::Init()

@@ -4,7 +4,7 @@ struct DataStruct
 {
 private:
     static float rateOfFire;
-    static float clipSize;
+    static int clipSize;
     static int maxHealth;
     static float runSpeed;
     static int healAmount;
@@ -18,7 +18,7 @@ public:
     static int GetHealAmount() { return healAmount; }
     static int GetAmmoAmount() { return ammoAmount; }
 
-    static void DecreaseRateOfFire(float amount);
+    static void IncreaseRateOfFire(float amount);
     static void IncreaseClipSize(int amount);
     static void IncreaseMaxHealth(int amount);
     static void IncreaseRunSpeed(float amount);
