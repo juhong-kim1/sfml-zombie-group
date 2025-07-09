@@ -48,16 +48,16 @@ void SpriteGo::Init()
 	
 	if (TEXTURE_MGR.IsEmpty(tex)) 
 	{
-		std::cerr << "SpriteGo::Init - ÅØ½ºÃ³ ·Îµù ½ÇÆÐ: " << textureId << std::endl;
+		std::cerr << "SpriteGo::Init - ï¿½Ø½ï¿½Ã³ ï¿½Îµï¿½ ï¿½ï¿½ï¿½ï¿½: " << textureId << std::endl;
 	}
 	
 	sprite.setTexture(tex);
 	// Reset();
 	// 
-	// ¿øº» Å©±â·Î Ãâ·ÂÇÏ·Á¸é ½ºÄÉÀÏ ÃÊ±âÈ­ ÇÊ¿ä
+	// ï¿½ï¿½ï¿½ï¿½ Å©ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½Ï·ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½Ê±ï¿½È­ ï¿½Ê¿ï¿½
 	sprite.setScale(1.f, 1.f);
 
-	// À§Ä¡µµ ±âº»°ª (0,0)À¸·Î ¸ÂÃß°Å³ª ¿øÇÏ´Â °ªÀ¸·Î
+	// ï¿½ï¿½Ä¡ï¿½ï¿½ ï¿½âº»ï¿½ï¿½ (0,0)ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ß°Å³ï¿½ ï¿½ï¿½ï¿½Ï´ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
 	sprite.setPosition(0.f, 0.f);
 
 	active = true; 
@@ -72,14 +72,14 @@ void SpriteGo::Reset()
 {
 
 	const sf::Texture& tex = TEXTURE_MGR.Get(textureId);
-	if (&tex == &ResourceMgr<sf::Texture>::Empty) // ºñ±³ °¡´É
+	if (&tex == &ResourceMgr<sf::Texture>::Empty) // ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
 	{
-		std::cerr << "SpriteGo::Reset - ÅØ½ºÃ³°¡ ·ÎµùµÇÁö ¾Ê¾Ò½À´Ï´Ù: " << textureId << std::endl;
+		std::cerr << "SpriteGo::Reset - ï¿½Ø½ï¿½Ã³ï¿½ï¿½ ï¿½Îµï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½Ê¾Ò½ï¿½ï¿½Ï´ï¿½: " << textureId << std::endl;
 	}
 	sprite.setTexture(tex);
-	// ¿øº» Å©±â À¯Áö¿ë ½ºÄÉÀÏ ÃÊ±âÈ­
+	// ï¿½ï¿½ï¿½ï¿½ Å©ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½Ê±ï¿½È­
 	sprite.setScale(1.f, 1.f);
-	sprite.setPosition(position); // À¯ÁöÇß´ø À§Ä¡·Î ´Ù½Ã ¼³Á¤
+	sprite.setPosition(position); // ï¿½ï¿½ï¿½ï¿½ï¿½ß´ï¿½ ï¿½ï¿½Ä¡ï¿½ï¿½ ï¿½Ù½ï¿½ ï¿½ï¿½ï¿½ï¿½
 	Utils::SetOrigin(sprite, originPreset);
 
 }

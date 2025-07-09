@@ -3,10 +3,10 @@
 
 void Framework::Init(int w, int h, const std::string& t)
 {   
-    // ÀüÃ¼È­¸é ¸ðµå·Î µ¥½ºÅ©Å¾ ÇØ»óµµ »ç¿ë
+    // ï¿½ï¿½Ã¼È­ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½Å©Å¾ ï¿½Ø»ï¿½ ï¿½ï¿½ï¿½
     sf::VideoMode desktop = sf::VideoMode::getDesktopMode();
 
-    // ÀüÃ¼È­¸éÀ¸·Î Ã¢ »ý¼º
+    // ï¿½ï¿½Ã¼È­ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ Ã¢ ï¿½ï¿½ï¿½ï¿½
 	//window.create(sf::VideoMode(w, h), t);
     window.create(desktop, t, sf::Style::Fullscreen);
     std::vector<std::string> texIds 
@@ -39,7 +39,7 @@ void Framework::Do()
         {
             if (event.type == sf::Event::Closed)
                 window.close();
-            //esc ´©¸£¸é Ã¢ ´Ý±â
+            //esc ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ Ã¢ ï¿½Ý±ï¿½
             if (event.type == sf::Event::KeyPressed && event.key.code == sf::Keyboard::Escape)
                 window.close();
 

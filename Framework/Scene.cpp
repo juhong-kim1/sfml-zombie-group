@@ -10,9 +10,7 @@ Scene::Scene(SceneIds id)
 
 void Scene::Init()
 {
-
-
-	/*for (auto obj : gameObjects)
+	for (auto obj : gameObjects)
 	{
 		obj->Init();
 	}
@@ -20,7 +18,7 @@ void Scene::Init()
 	for (auto obj : objectsToAdd)
 	{
 		obj->Init();
-	}*/
+	}
 }
 
 void Scene::Release()
@@ -40,7 +38,7 @@ void Scene::Enter()
 	TEXTURE_MGR.Load(texIds);
 	FONT_MGR.Load(fontIds);
 	SOUNDBUFFER_MGR.Load(soundIds);
-	// ÅØ½ºÃ³ Å©±â °¡Á®¿À±â
+	// ï¿½Ø½ï¿½Ã³ Å©ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
 	const sf::Texture& tex = TEXTURE_MGR.Get("graphics/background.png");
 	sf::Vector2u texSize = tex.getSize();
 

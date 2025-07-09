@@ -1,6 +1,4 @@
 #pragma once
-
-
 class SceneMgr : public Singleton<SceneMgr>
 {
 	friend class Singleton<SceneMgr>;
