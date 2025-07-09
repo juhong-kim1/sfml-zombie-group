@@ -1,5 +1,8 @@
 #pragma once
 #include "GameObject.h"
+#include "HitBox.h"
+
+class Player;
 
 enum class Type
 {
@@ -14,6 +17,8 @@ class Zombie : public GameObject
 protected:
 	sf::Sprite sprite;
 	std::string texId = "graphics/bloater.png";
+
+	Player* target;
 
 	sf::Vector2f direction = { 0.0f, 0.0f };
 	
@@ -34,7 +39,8 @@ protected:
 	float attackTimer = 0.f;
 
 	sf::Vector2f targetPos = { 100.f, 100.f }; // 플레이어로 변경하기
-
+	
+	HitBox hitBox;
 	// 생성될 때 랜덤 종류 적용
 
 
@@ -66,9 +72,14 @@ public:
 		return sprite.getGlobalBounds();
 	}
 
-	void Attack();
+	void Attack(float dt);
 	void SetRandomType();
 	void Movement(float dt);
 	void UpdateHpBar();
 	void Die();
+
+	const HitBox& GetHitBox() const
+	{
+		return hitBox;
+	}
 };

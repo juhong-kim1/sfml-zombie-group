@@ -1,6 +1,5 @@
 #include "stdafx.h"
 #include "SceneMgr.h"
-#include "SceneDev1.h"
 #include "SceneDev2.h"
 #include "TitleScene.h"
 #include"ModeScene.h"

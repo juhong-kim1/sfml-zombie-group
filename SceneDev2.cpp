@@ -5,7 +5,7 @@
 #include "ItemHealthPack.h"
 #include "ItemAmmo.h"
 
-SceneDev2::SceneDev2() : Scene(SceneIds::Dev2)
+SceneDev2::SceneDev2() : Scene(SceneIds::Game6)
 {
 }
 
