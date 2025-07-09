@@ -4,19 +4,6 @@
 class SceneSelect : public Scene
 {
 protected:
-	//enum class StatOptions
-	//{
-	//	None,
-	//	Fire,
-	//	Reload,
-	//	MaxHealth,
-	//	RunSpeed,
-	//	HealthPickUps,
-	//	AmmoPickUps,
-	//	count
-	//};
-
-	//StatOptions seletedOption = StatOptions::None;
 
 public:
 	SceneSelect();
