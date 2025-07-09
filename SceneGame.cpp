@@ -3,7 +3,7 @@
 #include "Player.h"
 
 SceneGame::SceneGame()
-	:Scene(SceneIds::Game)
+	:Scene(SceneIds::Title)
 {
 }
 
