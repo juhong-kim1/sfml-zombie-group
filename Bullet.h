@@ -2,7 +2,9 @@
 #include "GameObject.h"
 #include "HitBox.h"
 
-class SceneDev2;
+class SceneGame1;
+class SceneGame2;
+class SceneGame3;
 
 class Bullet :
 	public GameObject
@@ -17,7 +19,9 @@ protected:
 
 	HitBox hitBox;
 
-	SceneDev2* sceneDev2 = nullptr;
+	SceneGame1* sceneGame1 = nullptr;
+	SceneGame2* sceneGame2 = nullptr;
+	SceneGame3* sceneGame3 = nullptr;
 
 public:
 	Bullet(const std::string& name = "");

@@ -1,6 +1,10 @@
 #include "stdafx.h"
 #include "Zombie.h"
 #include "Player.h"
+#include "TileMap.h"
+#include "SceneGame1.h"
+#include "SceneGame2.h"
+#include "SceneGame3.h"
 
 Zombie::Zombie(const std::string& name)
 	: GameObject(name)
@@ -190,8 +194,52 @@ void Zombie::Movement(float dt)
 		// 이동
 		if (Utils::Distance(target->GetPosition(), position) > 0.5f)
 		{
-			SetPosition(position + direction * speed * dt);
+			sf::Vector2f nextPos = position + direction * speed * dt;
+
+	
+			Scene* currentScene = SCENE_MGR.GetCurrentScene();
+			TileMap* tileMap = nullptr;
+
+			if (auto sceneGame1 = dynamic_cast<SceneGame1*>(currentScene))
+			{
+				tileMap = sceneGame1->GetTileMap();
+			}
+			else if (auto sceneGame2 = dynamic_cast<SceneGame2*>(currentScene))
+			{
+				tileMap = sceneGame2->GetTileMap();
+			}
+			else if (auto sceneGame3 = dynamic_cast<SceneGame3*>(currentScene))
+			{
+				tileMap = sceneGame3->GetTileMap();
+			}
+
+			// 벽이 아닌 곳으로만 이동
+			if (tileMap && !tileMap->IsWallAt(nextPos))
+			{
+				SetPosition(nextPos);
+			}
+			else
+			{
+				// 벽에 막혔을 때 다른 방향 시도 (옵션)
+				// X축만 이동 시도
+				sf::Vector2f altPos1 = sf::Vector2f(nextPos.x, position.y);
+				if (tileMap && !tileMap->IsWallAt(altPos1))
+				{
+					SetPosition(altPos1);
+				}
+				// Y축만 이동 시도
+				else
+				{
+					sf::Vector2f altPos2 = sf::Vector2f(position.x, nextPos.y);
+					if (tileMap && !tileMap->IsWallAt(altPos2))
+					{
+						SetPosition(altPos2);
+					}
+				}
+				// 둘 다 막혔으면 이동하지 않음
+			}
 		}
+	
 	}
 }
 
