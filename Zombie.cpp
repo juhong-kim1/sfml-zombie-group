@@ -60,8 +60,9 @@ void Zombie::Reset()
 	SoundMgr::Instance().Load("splat", "Sound/splat.wav");
 
 	SetRandomType(); // 랜덤 타입 설정
-	hitBoxActive = true;
+
 	isAlive = true;
+	hitBoxActive = true;
 
 	sortingLayer = SortingLayers::Foreground;
 	sortingOrder = 0;
@@ -81,6 +82,8 @@ void Zombie::Reset()
 	Utils::SetOrigin(hpBar, Origins::ML);
 
 	per = hpBar.getSize().x / health;
+
+	hitBox.UpdateTransform(sprite, sprite.getLocalBounds());
 }
 
 void Zombie::Update(float dt)
@@ -99,7 +102,7 @@ void Zombie::Update(float dt)
 
 	UpdateHpBar(); // 좀비 체력바 업데이트
 	Movement(dt);  // 좀비 이동
-	Attack(dt);    // 공격
+	Attack(dt);    // 좀비 공격
 
 	if (health <= 0)
 	{
@@ -147,14 +150,20 @@ void Zombie::OnDamage(int damage)
 void Zombie::Attack(float dt)
 {
 	attackTimer += dt;
-	if (attackInterval < attackTimer && Utils::CheckCollision(hitBox.rect, target->GetHitBox().rect)) // 플레이어랑 병합 후 충돌체크하여 공격 **
+
+	if (!isAlive)
+	{
+		return;
+	}
+
+	if (attackInterval < attackTimer && Utils::CheckCollision(hitBox.rect, target->GetHitBox().rect))
 	{
 		attackTimer = 0;
-		// 플레이어 데미지 메서드 호출
 		target->OnDamage(damage);
 		std::cout << "공격" << std::endl;
 	}
 }
+
 
 // 좀비 타입 설정
 void Zombie::SetRandomType()
@@ -262,12 +271,14 @@ void Zombie::UpdateHpBar()
 // 사망 처리
 void Zombie::Die()
 {
-	// 사망 이펙트
+	if (!isAlive)
+	{
+		return;
+	}
+
 	isAlive = false;
 	sprite.setTexture(TEXTURE_MGR.Get(bloodTexId), true);
 	SetRotation(0.f);
-
-	// 피가 될 경우 레이어 변경
 	sortingLayer = SortingLayers::Background;
 	sortingOrder = 1;
 	hitBoxActive = false;

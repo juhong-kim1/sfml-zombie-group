@@ -64,6 +64,11 @@ void SceneGame3::Exit()
 	}
 	zombieList.clear();
 
+	for (Zombie* zombie : zombiePool)
+	{
+		zombie->SetActive(false);
+	}
+
 	Scene::Exit();
 }
 
@@ -128,8 +133,9 @@ void SceneGame3::SpawnZombies(int count)
 			zombie = zombiePool.front();
 			zombiePool.pop_front();
 			zombie->SetActive(true);
+			zombie->Reset();
 		}
-		zombie->SetRandomType();
+
 		zombie->Reset();
 		zombie->SetPosition(Utils::RandomInUnitCircle() * 500.f);
 		zombieList.push_back(zombie);

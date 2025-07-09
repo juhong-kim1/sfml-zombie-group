@@ -94,6 +94,7 @@ public:
 		{
 			static HitBox nullHitBox;
 			nullHitBox.rect.setSize({ 0.f, 0.f });
+			nullHitBox.rect.setPosition({ -9999.f, -9999.f });
 			return nullHitBox;
 		}
 	}

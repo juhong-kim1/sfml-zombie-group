@@ -93,7 +93,7 @@ void Bullet::Update(float dt)
 		const auto& zombieList = sceneGame1->GetZombies();
 		for (const auto zombie : zombieList)
 		{
-			if (Utils::CheckCollision(hitBox.rect, zombie->GetHitBox().rect))
+			if (zombie->GetAlive() && Utils::CheckCollision(hitBox.rect, zombie->GetHitBox().rect) )
 			{
 				SetActive(false);
 				zombie->OnDamage(50);
@@ -106,7 +106,7 @@ void Bullet::Update(float dt)
 		const auto& zombieList = sceneGame2->GetZombies();
 		for (const auto zombie : zombieList)
 		{
-			if (Utils::CheckCollision(hitBox.rect, zombie->GetHitBox().rect))
+			if (zombie->GetAlive() && Utils::CheckCollision(hitBox.rect, zombie->GetHitBox().rect))
 			{
 				SetActive(false);
 				zombie->OnDamage(50);
@@ -119,7 +119,7 @@ void Bullet::Update(float dt)
 		const auto& zombieList = sceneGame3->GetZombies();
 		for (const auto zombie : zombieList)
 		{
-			if (Utils::CheckCollision(hitBox.rect, zombie->GetHitBox().rect))
+			if (zombie->GetAlive() && Utils::CheckCollision(hitBox.rect, zombie->GetHitBox().rect))
 			{
 				SetActive(false);
 				zombie->OnDamage(50);

@@ -61,12 +61,17 @@ void SceneGame1::Enter()
 
 void SceneGame1::Exit()
 {
-	for (Zombie* zombie : zombieList)
+	for (Zombie * zombie : zombieList)
 	{
 		zombie->SetActive(false);
 		zombiePool.push_back(zombie);
 	}
 	zombieList.clear();
+
+	for (Zombie* zombie : zombiePool)
+	{
+		zombie->SetActive(false);
+	}
 
 	Scene::Exit();
 }
@@ -132,8 +137,8 @@ void SceneGame1::SpawnZombies(int count)
 			zombie = zombiePool.front();
 			zombiePool.pop_front();
 			zombie->SetActive(true);
+			zombie->Reset();
 		}
-		zombie->Reset();
 		float x = Utils::RandomRange(-150.f, 150.f);
 		float y = Utils::RandomRange(-150.f, 150.f);
 		zombie->SetPosition(sf::Vector2f(x, y));
