@@ -15,6 +15,11 @@ protected:
 
 	Player* player = nullptr;
 	TileMap* tileMap = nullptr;
+
+	float healthPackRespawnTimer = 0.0f;
+	float ammoRespawnTimer = 0.0f;
+	bool healthPackExists = false;
+	bool ammoExists = false;
 	
 	bool isPaused = false;
 	sf::Text pauseText;
@@ -26,6 +31,8 @@ protected:
 	int wave = 1;
 	int currentScore = 0;
 	int zombie = 1;
+
+	sf::Sprite cursor;
 
 public:
 	SceneGame1();
@@ -45,4 +52,7 @@ public:
 
 	TileMap* GetTileMap();
 	void AddScore(int amount);
+
+	void SpawnHealthPack();
+	void SpawnAmmo();
 };

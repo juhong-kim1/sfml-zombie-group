@@ -18,6 +18,7 @@ protected:
 public:
 	Item(const std::string& name);
 	virtual ~Item() = default;
+	float lifeTimer = 0.0f;
 
 	virtual void Use() = 0;
 };

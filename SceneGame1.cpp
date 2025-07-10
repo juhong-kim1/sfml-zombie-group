@@ -32,6 +32,7 @@ void SceneGame1::Init()
 	texIds.push_back("graphics/ammo_pickup.png");
 	texIds.push_back("graphics/bullet.png");
 	texIds.push_back("graphics/blood.png");
+	texIds.push_back("graphics/crosshair.png");
 
 
 	TileMap* tileMap = (TileMap*)AddGameObject(new TileMap("TileMap"));
@@ -51,6 +52,7 @@ void SceneGame1::Init()
 
 void SceneGame1::Enter()
 {
+	FRAMEWORK.GetWindow().setMouseCursorVisible(false);
 	Scene::Enter();
 	std::cout << " SceneDev2::Enter() 호출됨" << std::endl;
 	
@@ -103,11 +105,19 @@ void SceneGame1::Enter()
 	uiView.setCenter(windowSize * 0.5f);
 	SpawnZombies(5);
 
+	SpawnHealthPack();
+	SpawnAmmo();
+
 	Scene::Enter();
+
+	cursor.setTexture(TEXTURE_MGR.Get("graphics/crosshair.png"));
+	Utils::SetOrigin(cursor, Origins::MC);
 }
 
 void SceneGame1::Exit()
 {
+	FRAMEWORK.GetWindow().setMouseCursorVisible(true);
+
 	for (Zombie * zombie : zombieList)
 	{
 		zombie->SetActive(false);
@@ -146,6 +156,71 @@ void SceneGame1::Update(float dt)
 			++it;
 		}
 	}
+
+	cursor.setPosition(ScreenToUi(InputMgr::GetMousePosition()));
+
+	auto itemIt = itemList.begin();
+	while (itemIt != itemList.end())
+	{
+		if (!(*itemIt)->GetActive())
+		{
+			if (dynamic_cast<ItemHealthPack*>(*itemIt))
+			{
+				healthPackExists = false;
+				healthPackRespawnTimer = 0.0f;
+			}
+			else if (dynamic_cast<ItemAmmo*>(*itemIt))
+			{
+				ammoExists = false;
+				ammoRespawnTimer = 0.0f;
+			}
+
+			itemIt = itemList.erase(itemIt);
+		}
+		else
+		{
+			(*itemIt)->lifeTimer += dt;
+			if ((*itemIt)->lifeTimer >= 5.0f)
+			{
+				if (dynamic_cast<ItemHealthPack*>(*itemIt))
+				{
+					healthPackExists = false;
+					healthPackRespawnTimer = 0.0f;
+				}
+				else if (dynamic_cast<ItemAmmo*>(*itemIt))
+				{
+					ammoExists = false;
+					ammoRespawnTimer = 0.0f;
+				}
+
+				(*itemIt)->SetActive(false);
+				itemIt = itemList.erase(itemIt);
+			}
+			else
+			{
+				++itemIt;
+			}
+		}
+	}
+
+	if (!healthPackExists)
+	{
+		healthPackRespawnTimer += dt;
+		if (healthPackRespawnTimer >= 5.0f)
+		{
+			SpawnHealthPack();
+		}
+	}
+
+	if (!ammoExists)
+	{
+		ammoRespawnTimer += dt;
+		if (ammoRespawnTimer >= 5.0f)
+		{
+			SpawnAmmo();
+		}
+	}
+
 	// 2. 좀비 다 죽으면 다음 씬
 	if (zombieList.empty())
 	{
@@ -188,6 +263,7 @@ void SceneGame1::Draw(sf::RenderWindow& window)
 	window.draw(zombieCountText);
 	window.draw(scoreText);
 	window.draw(hiScoreText);
+	window.draw(cursor);
 	
 
 	if (isPaused)
@@ -275,4 +351,42 @@ void SceneGame1::AddScore(int amount)
 	}
 
 	scoreText.setString("SCORE: " + std::to_string(currentScore));
+}
+
+void SceneGame1::SpawnHealthPack()
+{
+	if (healthPackExists) return; // 이미 존재하면 생성하지 않음
+
+	ItemHealthPack* healthPack = new ItemHealthPack();
+	AddGameObject(healthPack);
+	healthPack->Init();
+	healthPack->Reset();
+	healthPack->lifeTimer = 0.0f; // 생존 시간 초기화
+
+	// 벽 안쪽에서 랜덤 위치에 생성
+	float x = Utils::RandomRange(-150.f, 150.f);
+	float y = Utils::RandomRange(-150.f, 150.f);
+	healthPack->SetPosition(sf::Vector2f(x, y));
+
+	itemList.push_back(healthPack);
+	healthPackExists = true;
+}
+
+void SceneGame1::SpawnAmmo()
+{
+	if (ammoExists) return; // 이미 존재하면 생성하지 않음
+
+	ItemAmmo* ammo = new ItemAmmo();
+	AddGameObject(ammo);
+	ammo->Init();
+	ammo->Reset();
+	ammo->lifeTimer = 0.0f; // 생존 시간 초기화
+
+	// 벽 안쪽에서 랜덤 위치에 생성
+	float x = Utils::RandomRange(-150.f, 150.f);
+	float y = Utils::RandomRange(-150.f, 150.f);
+	ammo->SetPosition(sf::Vector2f(x, y));
+
+	itemList.push_back(ammo);
+	ammoExists = true;
 }
