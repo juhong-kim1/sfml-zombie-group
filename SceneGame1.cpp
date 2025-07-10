@@ -37,7 +37,7 @@ void SceneGame1::Init()
 	TileMap* tileMap = (TileMap*)AddGameObject(new TileMap("TileMap"));
 	player = (Player*)AddGameObject(new Player("Player"));
 	// �ʱ� ���� ����
-	for (int i = 0; i < 100; ++i)
+	for (int i = 0; i < 30; ++i)
 	{
 		Zombie* zombie = (Zombie*)AddGameObject(new Zombie());
 		zombie->SetActive(false);
