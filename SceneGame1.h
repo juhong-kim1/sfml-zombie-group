@@ -5,7 +5,7 @@ class Zombie;
 class Item;
 class Player;
 class TileMap;
-
+                                 
 class SceneGame1 : public Scene
 {
 protected:
@@ -56,3 +56,5 @@ public:
 	void SpawnHealthPack();
 	void SpawnAmmo();
 };
+
+// 발표용
